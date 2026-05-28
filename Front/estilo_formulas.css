@@ -1,0 +1,146 @@
+/* ==========================================================================
+   1. UNIFICACIÓN TIPOGRÁFICA GLOBAL (FUENTE INTER)
+   ========================================================================== */
+
+/* Forzamos la herencia de la fuente 'Inter' en toda la interfaz estructural,
+   pero excluimos intencionalmente los contenedores de MathJax para evitar que 
+   se rompa el renderizado de las fórmulas y símbolos matemáticos. */
+body, h1, h2, h3, h4, h5, h6, p, span, a, button, div:not([class*="mjx-"]), section, footer, header, aside, nav, text {
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+}
+
+/* ==========================================================================
+   2. ESTILOS GENERALES Y CONFIGURACIÓN BASE
+   ========================================================================== */
+html {
+    scroll-behavior: smooth;
+    text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: #f4f7fa; 
+}
+
+/* Color de selección de texto personalizado (Paleta de azules/índigos fríos) */
+::selection {
+    background-color: #e0e7ff; 
+    color: #4338ca;            
+}
+
+/* ==========================================================================
+   3. CONFIGURACIÓN DEL PIE DE PÁGINA (UNIFICACIÓN AL 100%)
+   ========================================================================== */
+
+/* Mantener el tracking, padding y peso exacto de la píldora informativa */
+footer .rounded-full {
+    letter-spacing: -0.01em;
+}
+
+footer span.tracking-wider {
+    letter-spacing: 0.05em;
+}
+
+/* Forzar la visualización correcta del isotipo pequeño f' del footer */
+footer .bg-\[\#0f172a\] {
+    font-weight: 700 !important;
+}
+
+/* ==========================================================================
+   4. OPTIMIZACIÓN RESPONSIVA PARA FÓRMULAS (ANTI-DESBORDAMIENTO)
+   ========================================================================== */
+
+/* Evita que fórmulas horizontales largas destruyan el layout en pantallas móviles,
+   generando una sutil barra de desplazamiento horizontal táctil dentro de la tarjeta. */
+.math-container {
+    overflow-x: auto;
+    overflow-y: hidden;
+    max-width: 100%;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 0.5rem;
+}
+
+.math-container::-webkit-scrollbar {
+    height: 4px;
+}
+
+.math-container::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.math-container::-webkit-scrollbar-thumb {
+    background-color: #cbd5e1;
+    border-radius: 99px;
+}
+
+/* ==========================================================================
+   5. BARRA DE DESPLAZAMIENTO GLOBAL DE LA PÁGINA (SCROLLBAR)
+   ========================================================================== */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 9999px;
+    border: 2px solid #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
+
+@supports (scrollbar-color: auto) {
+    html {
+        scrollbar-color: #cbd5e1 #f1f5f9;
+        scrollbar-width: thin;
+    }
+}
+
+/* ==========================================================================
+   6. ACCESIBILIDAD Y ADAPTACIÓN EXTREMA (MÓVILES PEQUEÑOS < 360px)
+   ========================================================================== */
+button:focus-visible,
+a:focus-visible {
+    outline: 2px solid #6366f1;
+    outline-offset: 2px;
+}
+
+a, button {
+    touch-action: manipulation;
+}
+
+@media (max-width: 360px) {
+    h1 {
+        font-size: 1.75rem !important;
+        line-height: 1.2 !important;
+    }
+    
+    h2 {
+        font-size: 1.25rem !important;
+    }
+
+    main {
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+    }
+    
+    /* En pantallas críticamente pequeñas, la píldora se apila verticalmente de forma limpia */
+    footer .rounded-full {
+        border-radius: 0.75rem !important;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.25rem;
+        width: 100%;
+        padding: 10px 16px !important;
+    }
+}

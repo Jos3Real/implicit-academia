@@ -1,0 +1,110 @@
+/* ==========================================================================
+   ESTILOS GENERALES - PALETA FRÍA Y CONFY
+   ========================================================================== */
+
+html {
+    scroll-behavior: smooth;
+    text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: #f4f7fa; /* Gris azulado gélido */
+}
+
+/* Selección de texto con contraste suave */
+::selection {
+    background-color: #e0e7ff; 
+    color: #4338ca;            
+}
+
+/* ==========================================================================
+   OPTIMIZACIÓN RESPONSIVA PARA MATEMÁTICAS (FUNDENTAL EN MÓVILES)
+   ========================================================================== */
+
+/* Las ecuaciones largas suelen romper el diseño en pantallas pequeñas.
+   Esta regla permite que, si la fórmula es más ancha que la pantalla del celular,
+   el usuario pueda deslizarla horizontalmente de forma suave sin deformar la web.
+*/
+.math-container {
+    overflow-x: auto;
+    overflow-y: hidden;
+    max-width: 100%;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 0.25rem;
+}
+
+/* Ocultar barra de scroll visual en las fórmulas para mantener la pulcritud, 
+   pero permitiendo el gesto físico de deslizar */
+.math-container::-webkit-scrollbar {
+    height: 3px;
+}
+.math-container::-webkit-scrollbar-thumb {
+    background-color: #cbd5e1;
+    border-radius: 99px;
+}
+
+/* ==========================================================================
+   BARRA DE DESPLAZAMIENTO GLOBAL DE LA PÁGINA
+   ========================================================================== */
+
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 9999px;
+    border: 2px solid #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
+
+@supports (scrollbar-color: auto) {
+    html {
+        scrollbar-color: #cbd5e1 #f1f5f9;
+        scrollbar-width: thin;
+    }
+}
+
+/* ==========================================================================
+   ACCESIBILIDAD Y MEJORAS TÁCTILES
+   ========================================================================== */
+
+button:focus-visible,
+a:focus-visible {
+    outline: 2px solid #6366f1;
+    outline-offset: 2px;
+}
+
+a, button {
+    touch-action: manipulation;
+}
+
+/* Ajustes de tipografía para pantallas ultra pequeñas (menores a 360px) */
+@media (max-width: 360px) {
+    h1 {
+        font-size: 1.75rem !important;
+        line-height: 1.2 !important;
+    }
+    
+    h2 {
+        font-size: 1.25rem !important;
+    }
+
+    main {
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+    }
+}

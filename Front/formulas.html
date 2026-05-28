@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ImplicitAcademia | Compendio de Fórmulas</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                },
+            },
+        }
+    </script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="estilo_formulas.css">
+
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body class="text-slate-800 flex flex-col min-h-screen bg-[#f4f7fa]">
+
+    <header class="bg-white/80 backdrop-blur-md sticky top-0 z-40 border-b border-slate-100 shadow-sm">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="bg-indigo-600 text-white w-10 h-10 rounded-xl flex items-center justify-center font-bold text-xl shadow-md shadow-indigo-200">
+                    f'
+                </div>
+                <span class="text-xl font-bold tracking-tight text-slate-900">Implicit<span class="text-indigo-600">Academia</span></span>
+            </div>
+
+            <button id="menu-btn" class="group flex items-center space-x-2 bg-slate-50 hover:bg-indigo-50 text-slate-600 hover:text-indigo-600 px-4 py-2.5 rounded-xl transition-all duration-300 border border-slate-100">
+                <span class="font-medium text-sm">Menú de Navegación</span>
+                <div class="flex flex-col space-y-1.5 w-5 justify-center items-end">
+                    <span class="block h-0.5 w-5 bg-current rounded transition-transform duration-300"></span>
+                    <span class="block h-0.5 w-4 bg-current rounded transition-transform duration-300"></span>
+                    <span class="block h-0.5 w-5 bg-current rounded transition-transform duration-300"></span>
+                </div>
+            </button>
+        </div>
+    </header>
+
+    <div id="sidebar-overlay" class="fixed inset-0 bg-slate-900/30 backdrop-blur-sm z-50 opacity-0 pointer-events-none transition-opacity duration-300"></div>
+    <aside id="sidebar" class="fixed top-0 right-0 h-full w-full sm:w-80 bg-white z-50 shadow-2xl translate-x-full transition-transform duration-300 ease-out flex flex-col">
+        <div class="p-6 border-b border-slate-100 flex items-center justify-between">
+            <span class="font-semibold text-slate-500 uppercase tracking-wider text-xs">Contenido del Curso</span>
+            <button id="close-btn" class="w-8 h-8 rounded-full bg-slate-50 text-slate-500 hover:bg-rose-50 hover:text-rose-600 flex items-center justify-center transition-colors">
+                <i class="fa-solid fa-xmark text-sm"></i>
+            </button>
+        </div>
+        <nav class="flex-1 p-6 space-y-2 overflow-y-auto">
+            <a href="index.html" class="flex items-center space-x-4 px-4 py-3.5 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 font-medium transition-all group">
+                <i class="fa-solid fa-house text-lg text-slate-400 group-hover:text-indigo-500 transition-colors"></i>
+                <span>Inicio</span>
+            </a>
+            <a href="conceptos.html" class="flex items-center space-x-4 px-4 py-3.5 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 font-medium transition-all group">
+                <i class="fa-solid fa-book-open text-lg text-slate-400 group-hover:text-indigo-500 transition-colors"></i>
+                <span>Conceptos Fundamentales</span>
+            </a>
+            <a href="formulas.html" class="flex items-center space-x-4 px-4 py-3.5 rounded-xl bg-indigo-50 text-indigo-600 font-medium transition-colors">
+                <i class="fa-solid fa-square-root-variable text-lg"></i>
+                <span>Fórmulas y Usos</span>
+            </a>
+            <a href="ejemplos.html" class="flex items-center space-x-4 px-4 py-3.5 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 font-medium transition-all group">
+                <i class="fa-solid fa-chalkboard-user text-lg text-slate-400 group-hover:text-indigo-500 transition-colors"></i>
+                <span>Ejemplos Guiados</span>
+            </a>
+            <a href="practica.html" class="flex items-center space-x-4 px-4 py-3.5 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 font-medium transition-all group">
+                <i class="fa-solid fa-pen-to-square text-lg text-slate-400 group-hover:text-indigo-500 transition-colors"></i>
+                <span>Laboratorio de Práctica</span>
+            </a>
+            <a href="videos.html" class="flex items-center space-x-4 px-4 py-3.5 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 font-medium transition-all group">
+                <i class="fa-solid fa-video text-lg text-slate-400 group-hover:text-indigo-500 transition-colors"></i>
+                <span>Aula Virtual (Videos)</span>
+            </a>
+        </nav>
+    </aside>
+
+    <main class="flex-1 max-w-6xl w-full mx-auto px-6 py-12 space-y-16">
+        
+        <div class="space-y-4 text-center md:text-left border-b border-slate-200 pb-8">
+            <span class="text-xs font-semibold tracking-wider text-indigo-600 uppercase bg-indigo-50 px-3 py-1 rounded-md">Módulo 2: Herramientas Técnicas</span>
+            <h1 class="text-3xl md:text-5xl font-extrabold text-slate-900 tracking-tight">Compendio de Reglas de Diferenciación</h1>
+            <p class="text-slate-600 max-w-3xl text-base md:text-lg leading-relaxed">
+                El dominio de la derivación implícita requiere una comprensión bilingüe de las fórmulas: saber cómo operan sobre la variable independiente ($x$) y cómo se transforman al ser aplicadas sobre la variable dependiente ($y$).
+            </p>
+        </div>
+
+        <section class="space-y-8">
+            <div class="flex items-center space-x-4 text-indigo-600">
+                <div class="w-12 h-12 bg-white shadow-sm border border-slate-100 rounded-xl flex items-center justify-center">
+                    <i class="fa-solid fa-arrow-up-9-1 text-2xl"></i>
+                </div>
+                <h2 class="text-2xl md:text-3xl font-bold text-slate-900">1. Reglas Algebraicas Básicas</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white border border-slate-100 rounded-2xl p-8 shadow-sm space-y-4 transition-all hover:shadow-md">
+                    <h3 class="text-xl font-bold text-indigo-600">Regla de la Potencia Generalizada</h3>
+                    <div class="math-container bg-slate-900 text-slate-100 rounded-xl p-6 text-center text-lg">
+                        $$\frac{d}{dx}[y^n] = n \cdot y^{n-1} \cdot \frac{dy}{dx}$$
+                    </div>
+                    <div class="space-y-3 pt-2">
+                        <p class="text-sm font-semibold text-slate-800 uppercase tracking-wide">Estructura:</p>
+                        <p class="text-sm text-slate-600 leading-relaxed italic">
+                            Se baja el exponente ($n$) a multiplicar, se resta una unidad al exponente de la variable ($n-1$) y se añade el diferencial interno de la cadena.
+                        </p>
+                        <p class="text-sm font-semibold text-slate-800 uppercase tracking-wide pt-2">¿Cuándo utilizarla?</p>
+                        <p class="text-sm text-slate-600 bg-slate-50 p-4 rounded-lg border-l-4 border-indigo-500">
+                            Es la fórmula más utilizada. Aplícala siempre que encuentres la variable $y$ elevada a cualquier exponente real (positivo, negativo o fraccionario) dentro de una ecuación implícita.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="bg-white border border-slate-100 rounded-2xl p-8 shadow-sm space-y-4 transition-all hover:shadow-md">
+                    <h3 class="text-xl font-bold text-indigo-600">Diferenciación de Constantes</h3>
+                    <div class="math-container bg-slate-900 text-slate-100 rounded-xl p-6 text-center text-lg">
+                        $$\frac{d}{dx}[C] = 0$$
+                    </div>
+                    <div class="space-y-3 pt-2">
+                        <p class="text-sm font-semibold text-slate-800 uppercase tracking-wide">Estructura:</p>
+                        <p class="text-sm text-slate-600 leading-relaxed italic">
+                            Cualquier número real o símbolo constante que no dependa de la variable $x$ se anula al ser derivado.
+                        </p>
+                        <p class="text-sm font-semibold text-slate-800 uppercase tracking-wide pt-2">¿Cuándo utilizarla?</p>
+                        <p class="text-sm text-slate-600 bg-slate-50 p-4 rounded-lg border-l-4 border-indigo-500">
+                            Fundamental para simplificar el lado derecho de ecuaciones como $x^2 + y^2 = r^2$, donde $r^2$ se convierte en cero tras la derivación.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="bg-indigo-900 rounded-3xl p-8 md:p-12 shadow-xl relative overflow-hidden">
+            <div class="absolute top-0 right-0 p-8 opacity-5">
+                <i class="fa-solid fa-xmark text-[15rem] text-white"></i>
+            </div>
+            
+            <div class="flex items-center space-x-4 text-indigo-300 relative z-10 mb-8">
+                <i class="fa-solid fa-boxes-stacked text-3xl"></i>
+                <h2 class="text-2xl md:text-3xl font-bold text-white">2. Reglas de Interacción de Variables</h2>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 relative z-10">
+                <div class="bg-white/10 backdrop-blur-sm border border-white/10 rounded-2xl p-6 md:p-8 space-y-6">
+                    <div class="flex justify-between items-center">
+                        <h3 class="text-xl font-bold text-indigo-200">Regla del Producto Implícito</h3>
+                        <span class="text-[10px] bg-indigo-500/30 text-indigo-100 px-2 py-1 rounded border border-indigo-400/30 font-mono">f(x) · g(y)</span>
+                    </div>
+                    <div class="math-container bg-black/40 rounded-xl p-6 text-white text-base md:text-lg">
+                        $$\frac{d}{dx}[x \cdot y] = 1 \cdot y + x \cdot \frac{dy}{dx}$$
+                    </div>
+                    <div class="space-y-4">
+                        <p class="text-sm text-indigo-100 leading-relaxed">
+                            <strong>Estructura Explicada:</strong> Derivada del primero por el segundo sin derivar, más el primero sin derivar por la derivada del segundo.
+                        </p>
+                        <div class="bg-indigo-950/50 p-4 rounded-xl border border-indigo-500/20">
+                            <h4 class="text-xs font-bold text-indigo-300 uppercase mb-2">Caso de Uso Crítico:</h4>
+                            <p class="text-xs text-indigo-200 leading-relaxed">
+                                Esta regla es la fuente más común de errores. Úsala siempre que $x$ e $y$ aparezcan multiplicándose en un mismo término (ej. $3x^2y^3$). No olvides tratar a $y$ con la regla de la cadena.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white/10 backdrop-blur-sm border border-white/10 rounded-2xl p-6 md:p-8 space-y-6">
+                    <div class="flex justify-between items-center">
+                        <h3 class="text-xl font-bold text-indigo-200">Regla del Cociente</h3>
+                        <span class="text-[10px] bg-indigo-500/30 text-indigo-100 px-2 py-1 rounded border border-indigo-400/30 font-mono">f(x,y) / g(x,y)</span>
+                    </div>
+                    <div class="math-container bg-black/40 rounded-xl p-6 text-white text-base md:text-lg">
+                        $$\frac{d}{dx}\left[\frac{u}{v}\right] = \frac{u'v - uv'}{v^2}$$
+                    </div>
+                    <div class="space-y-4">
+                        <p class="text-sm text-indigo-100 leading-relaxed">
+                            <strong>Estructura Explicada:</strong> (Derivada del numerador por el denominador) menos (numerador por derivada del denominador), todo sobre el denominador al cuadrado.
+                        </p>
+                        <div class="bg-indigo-950/50 p-4 rounded-xl border border-indigo-500/20">
+                            <h4 class="text-xs font-bold text-indigo-300 uppercase mb-2">Caso de Uso Crítico:</h4>
+                            <p class="text-xs text-indigo-200 leading-relaxed">
+                                Utilízala cuando la relación implícita presente divisiones algebraicas complejas. Ten extrema precaución con los signos negativos del numerador al derivar términos con $y$.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="space-y-8">
+            <div class="flex items-center space-x-4 text-indigo-600">
+                <div class="w-12 h-12 bg-white shadow-sm border border-slate-100 rounded-xl flex items-center justify-center">
+                    <i class="fa-solid fa-wave-square text-2xl"></i>
+                </div>
+                <h2 class="text-2xl md:text-3xl font-bold text-slate-900">3. Derivadas Trascendentales</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-white border border-slate-100 rounded-2xl p-6 shadow-sm space-y-4">
+                    <h4 class="font-bold text-slate-800">Función Seno</h4>
+                    <div class="math-container bg-slate-50 rounded-lg p-4 text-indigo-600 font-mono text-sm">
+                        $$\frac{d}{dx}[\sin(y)] = \cos(y) \cdot y'$$
+                    </div>
+                    <p class="text-[11px] text-slate-500 leading-relaxed">
+                        El diferencial $y'$ aparece como resultado de la regla de la cadena aplicada al argumento de la función.
+                    </p>
+                </div>
+                <div class="bg-white border border-slate-100 rounded-2xl p-6 shadow-sm space-y-4">
+                    <h4 class="font-bold text-slate-800">Función Coseno</h4>
+                    <div class="math-container bg-slate-50 rounded-lg p-4 text-rose-600 font-mono text-sm">
+                        $$\frac{d}{dx}[\cos(y)] = -\sin(y) \cdot y'$$
+                    </div>
+                    <p class="text-[11px] text-slate-500 leading-relaxed">
+                        Es vital mantener el signo negativo externo de la función trigonométrica al derivar.
+                    </p>
+                </div>
+                <div class="bg-white border border-slate-100 rounded-2xl p-6 shadow-sm space-y-4">
+                    <h4 class="font-bold text-slate-800">Función Exponencial</h4>
+                    <div class="math-container bg-slate-50 rounded-lg p-4 text-emerald-600 font-mono text-sm">
+                        $$\frac{d}{dx}[e^y] = e^y \cdot y'$$
+                    </div>
+                    <p class="text-[11px] text-slate-500 leading-relaxed">
+                        La función se mantiene idéntica, pero se "extrae" el factor de cambio $y'$ de su exponente.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <div class="bg-amber-50 border border-amber-100 rounded-2xl p-8 flex flex-col md:flex-row gap-6 items-center">
+            <div class="bg-amber-100 text-amber-600 w-16 h-16 rounded-full flex items-center justify-center shrink-0">
+                <i class="fa-solid fa-lightbulb text-3xl"></i>
+            </div>
+            <div class="space-y-2">
+                <h4 class="text-xl font-bold text-amber-900">Nota sobre la Notación Académica</h4>
+                <p class="text-sm text-amber-800 leading-relaxed">
+                    A lo largo de este compendio, hemos utilizado indistintamente $\frac{dy}{dx}$ y $y'$. En entornos académicos profesionales, se prefiere la notación de Leibniz ($\frac{dy}{dx}$) por su claridad para identificar con respecto a qué variable se está derivando, mientras que la notación prima ($y'$) es más ágil para procesos algebraicos rápidos. **Ambas son igualmente válidas en derivación implícita.**
+                </p>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="bg-white border-t border-slate-100 py-8 mt-auto">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-slate-500">
+            <div>
+                <p>&copy; 2026 <span class="font-medium text-slate-700">ImplicitAcademia</span>. Todos los derechos reservados.</p>
+            </div>
+            <div class="flex items-center space-x-2 bg-slate-50 px-4 py-2 rounded-xl border border-slate-100">
+                <span class="text-xs text-slate-400">Diseñado y Desarrollado por:</span>
+                <span class="font-semibold text-slate-700 tracking-tight">José Daniel Real García | 9941-25-837</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="funciones_formulas.js" defer></script>
+</body>
+</html>

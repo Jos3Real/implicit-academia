@@ -1,0 +1,86 @@
+/* ==========================================================================
+   ESTILOS GLOBALES Y CONFIGURACIÓN DE COLORES FRÍOS
+   ========================================================================== */
+
+/* Suavizado de scroll para toda la plataforma */
+html {
+    scroll-behavior: smooth;
+    text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+}
+
+/* Renderizado pulcro y ultra nítido de las fuentes */
+body {
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* Fondo con un sutil matiz azul grisáceo frío */
+    background-color: #f4f7fa; 
+}
+
+/* Personalización del color de selección de texto */
+::selection {
+    background-color: #e0e7ff; /* Azul índigo muy suave */
+    color: #4338ca;            /* Índigo oscuro */
+}
+
+/* ==========================================================================
+   BARRA DE DESPLAZAMIENTO REFINADA (SCROLLBAR COMPATIBLE)
+   ========================================================================== */
+
+/* Para navegadores basados en WebKit (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f5f9; /* Slate 100 */
+}
+
+::-webkit-scrollbar-thumb {
+    background: #cbd5e1; /* Slate 300 */
+    border-radius: 9999px;
+    border: 2px solid #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8; /* Slate 400 (Efecto frío al pasar el mouse) */
+}
+
+/* Para Firefox */
+@supports (scrollbar-color: auto) {
+    html {
+        scrollbar-color: #cbd5e1 #f1f5f9;
+        scrollbar-width: thin;
+    }
+}
+
+/* ==========================================================================
+   MICROINTERACCIONES Y EFECTOS "WOW" RESPONSIVOS
+   ========================================================================== */
+
+/* Efecto de enfoque accesible y estético para la navegación por teclado */
+button:focus-visible,
+a:focus-visible {
+    outline: 2px solid #6366f1;
+    outline-offset: 2px;
+}
+
+/* Evitar retrasos de pulsación (tap delay) en dispositivos móviles */
+a, button {
+    touch-action: manipulation;
+}
+
+/* Ajustes finos para pantallas extremadamente pequeñas (Smartphones de 320px) */
+@media (max-width: 360px) {
+    h1 {
+        font-size: 2rem !important;
+        line-height: 1.15 !important;
+    }
+    
+    header .max-w-7xl {
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+    }
+}
