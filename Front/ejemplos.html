@@ -4,53 +4,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ImplicitAcademia | Ejemplos Guiados</title>
-    
+
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
-                },
-            },
-        }
-    </script>
-    
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
+    <!-- KaTeX para renderizar fórmulas matemáticas -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body, {
+            delimiters: [
+                {left: '$$', right: '$$', display: true},
+                {left: '\\(', right: '\\)', display: false}
+            ]
+        });"></script>
+
     <link rel="stylesheet" href="estilo_ejemplos.css">
 
-    <script>
-        MathJax = {
-            tex: {
-                inlineMath: [['$', '$'], ['\\(', '\\)']],
-                displayMath: [['$$', '$$'], ['\\[', '\\]']]
-            },
-            svg: {
-                fontCache: 'global'
-            }
-        };
-    </script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
-<body class="text-slate-800 flex flex-col min-h-screen bg-[#f4f7fa]">
+<body class="text-slate-800 flex flex-col min-h-screen bg-slate-50">
 
+    <!-- ═══════════════════════════════════════
+         HEADER (idéntico al index)
+    ═══════════════════════════════════════ -->
     <header class="bg-white/80 backdrop-blur-md sticky top-0 z-40 border-b border-slate-100 shadow-sm">
         <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-            <div class="flex items-center space-x-3">
+            <a href="index.html" class="flex items-center space-x-3">
                 <div class="bg-indigo-600 text-white w-10 h-10 rounded-xl flex items-center justify-center font-bold text-xl shadow-md shadow-indigo-200">
                     f'
                 </div>
                 <span class="text-xl font-bold tracking-tight text-slate-900">Implicit<span class="text-indigo-600">Academia</span></span>
-            </div>
-
+            </a>
             <button id="menu-btn" class="group flex items-center space-x-2 bg-slate-50 hover:bg-indigo-50 text-slate-600 hover:text-indigo-600 px-4 py-2.5 rounded-xl transition-all duration-300 border border-slate-100">
                 <span class="font-medium text-sm">Menú de Navegación</span>
                 <div class="flex flex-col space-y-1.5 w-5 justify-center items-end">
@@ -62,6 +51,9 @@
         </div>
     </header>
 
+    <!-- ═══════════════════════════════════════
+         SIDEBAR OVERLAY
+    ═══════════════════════════════════════ -->
     <div id="sidebar-overlay" class="fixed inset-0 bg-slate-900/30 backdrop-blur-sm z-50 opacity-0 pointer-events-none transition-opacity duration-300"></div>
     <aside id="sidebar" class="fixed top-0 right-0 h-full w-full sm:w-80 bg-white z-50 shadow-2xl translate-x-full transition-transform duration-300 ease-out flex flex-col">
         <div class="p-6 border-b border-slate-100 flex items-center justify-between">
@@ -96,201 +88,577 @@
                 <span>Aula Virtual (Videos)</span>
             </a>
         </nav>
+        <div class="p-6 bg-slate-50 border-t border-slate-100 text-center">
+            <p class="text-xs text-slate-400">Aprende Cálculo a tu propio ritmo.</p>
+        </div>
     </aside>
 
-    <main class="flex-1 max-w-6xl w-full mx-auto px-6 py-12 space-y-16">
-        
-        <div class="space-y-4 text-center md:text-left border-b border-slate-200 pb-8">
-            <span class="text-xs font-semibold tracking-wider text-indigo-600 uppercase bg-indigo-50 px-3 py-1 rounded-md">Módulo 3: Casos Prácticos</span>
-            <h1 class="text-3xl md:text-5xl font-extrabold text-slate-900 tracking-tight">Ejemplos Guiados Paso a Paso</h1>
-            <p class="text-slate-600 max-w-3xl text-base md:text-lg leading-relaxed">
-                Analizaremos problemas de derivación implícita ordenados de menor a mayor complejidad. Presta especial atención a cómo se agrupan los términos con $y'$ antes del despeje final.
-            </p>
+    <!-- ═══════════════════════════════════════
+         PAGE HERO
+    ═══════════════════════════════════════ -->
+    <section class="bg-white border-b border-slate-100">
+        <div class="max-w-7xl mx-auto px-6 py-12 md:py-16">
+            <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+                <div class="space-y-3">
+                    <div class="flex items-center space-x-2 text-sm text-indigo-600 font-medium">
+                        <i class="fa-solid fa-chalkboard-user"></i>
+                        <span>Ejemplos Guiados</span>
+                    </div>
+                    <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+                        Aprende resolviendo paso a paso
+                    </h1>
+                    <p class="text-slate-500 max-w-2xl leading-relaxed">
+                        Cada ejemplo está desglosado en pasos individuales y explicados con detalle. Expande cada paso a tu ritmo y construye intuición real sobre la derivación implícita.
+                    </p>
+                </div>
+                <!-- Progress widget -->
+                <div class="flex-shrink-0 bg-slate-50 rounded-2xl border border-slate-100 p-5 w-full md:w-56">
+                    <p class="text-xs text-slate-400 font-medium uppercase tracking-wider mb-2">Tu progreso</p>
+                    <p class="text-2xl font-bold text-slate-800" id="progress-text">0 / 6</p>
+                    <p class="text-xs text-slate-400 mb-3">ejemplos revisados</p>
+                    <div class="h-2 bg-slate-200 rounded-full overflow-hidden">
+                        <div class="progress-fill" id="progress-bar" style="width:0%"></div>
+                    </div>
+                </div>
+            </div>
         </div>
+    </section>
 
-        <section class="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm relative overflow-hidden">
-            <div class="absolute top-0 right-0 bg-emerald-100 text-emerald-700 px-4 py-1 rounded-bl-2xl font-bold text-sm">
-                Nivel Básico
+    <!-- ═══════════════════════════════════════
+         CATEGORY FILTER
+    ═══════════════════════════════════════ -->
+    <div class="sticky top-20 z-30 bg-white/90 backdrop-blur border-b border-slate-100">
+        <div class="max-w-7xl mx-auto px-6 py-3 flex items-center space-x-2 overflow-x-auto">
+            <button class="cat-btn active flex-shrink-0 px-4 py-2 rounded-full text-sm font-medium border border-slate-200" data-cat="all">Todos</button>
+            <button class="cat-btn flex-shrink-0 px-4 py-2 rounded-full text-sm font-medium border border-slate-200 text-slate-600" data-cat="basico">Básico</button>
+            <button class="cat-btn flex-shrink-0 px-4 py-2 rounded-full text-sm font-medium border border-slate-200 text-slate-600" data-cat="intermedio">Intermedio</button>
+            <button class="cat-btn flex-shrink-0 px-4 py-2 rounded-full text-sm font-medium border border-slate-200 text-slate-600" data-cat="avanzado">Avanzado</button>
+            <button class="cat-btn flex-shrink-0 px-4 py-2 rounded-full text-sm font-medium border border-slate-200 text-slate-600" data-cat="tangente">Recta Tangente</button>
+            <button class="cat-btn flex-shrink-0 px-4 py-2 rounded-full text-sm font-medium border border-slate-200 text-slate-600" data-cat="segunda">2ª Derivada</button>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════
+         MAIN CONTENT
+    ═══════════════════════════════════════ -->
+    <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 py-10 space-y-8">
+
+        <!-- ────────────────────────────────────
+             EJEMPLO 1 — BÁSICO
+        ──────────────────────────────────── -->
+        <article class="example-card bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden fade-up" data-cat="basico" data-id="1">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between p-6 pb-4 gap-3">
+                <div class="flex items-center space-x-3">
+                    <div class="bg-indigo-600 text-white w-9 h-9 rounded-xl flex items-center justify-center font-bold text-sm shadow shadow-indigo-200 flex-shrink-0">01</div>
+                    <div>
+                        <h2 class="font-bold text-slate-900 text-lg">Circunferencia Unitaria</h2>
+                        <p class="text-slate-500 text-sm">Derivación implícita directa — introducción al método</p>
+                    </div>
+                </div>
+                <span class="badge-basico self-start sm:self-auto px-3 py-1 rounded-full text-xs font-semibold">Básico</span>
             </div>
-            <div class="mb-6">
-                <h2 class="text-2xl font-bold text-slate-800 mb-2">Ejemplo 1: Ecuación de la Circunferencia</h2>
-                <p class="text-slate-600">Encuentra $\frac{dy}{dx}$ para la ecuación $x^2 + y^2 = 25$.</p>
-            </div>
-            
-            <div class="space-y-6">
-                <div class="flex flex-col md:flex-row gap-4 items-start md:items-center">
-                    <div class="bg-slate-100 text-slate-600 w-8 h-8 rounded-full flex items-center justify-center font-bold shrink-0">1</div>
-                    <div class="flex-1">
-                        <p class="text-sm font-semibold text-slate-700 mb-2">Derivamos ambos lados con respecto a $x$:</p>
-                        <div class="math-container bg-slate-50 p-4 rounded-xl text-center border border-slate-100">
-                            $$\frac{d}{dx}[x^2] + \frac{d}{dx}[y^2] = \frac{d}{dx}[25]$$
-                        </div>
-                    </div>
-                </div>
 
-                <div class="flex flex-col md:flex-row gap-4 items-start md:items-center">
-                    <div class="bg-slate-100 text-slate-600 w-8 h-8 rounded-full flex items-center justify-center font-bold shrink-0">2</div>
-                    <div class="flex-1">
-                        <p class="text-sm font-semibold text-slate-700 mb-2">Aplicamos las reglas de derivación (recuerda agregar $y'$ al derivar $y$):</p>
-                        <div class="math-container bg-slate-50 p-4 rounded-xl text-center border border-slate-100">
-                            $$2x + 2y \cdot y' = 0$$
-                        </div>
-                    </div>
+            <div class="px-6 pb-3">
+                <div class="math-block text-center text-base">
+                    $$x^2 + y^2 = 25$$
                 </div>
-
-                <div class="flex flex-col md:flex-row gap-4 items-start md:items-center">
-                    <div class="bg-indigo-100 text-indigo-600 w-8 h-8 rounded-full flex items-center justify-center font-bold shrink-0">3</div>
-                    <div class="flex-1">
-                        <p class="text-sm font-semibold text-slate-700 mb-2">Despejamos $y'$ (o $\frac{dy}{dx}$):</p>
-                        <div class="math-container bg-indigo-50 p-4 rounded-xl text-center border border-indigo-100">
-                            $$2y \cdot y' = -2x \implies y' = \frac{-2x}{2y} \implies y' = -\frac{x}{y}$$
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm relative overflow-hidden">
-            <div class="absolute top-0 right-0 bg-amber-100 text-amber-700 px-4 py-1 rounded-bl-2xl font-bold text-sm">
-                Nivel Intermedio
-            </div>
-            <div class="mb-6">
-                <h2 class="text-2xl font-bold text-slate-800 mb-2">Ejemplo 2: Interacción con Regla del Producto</h2>
-                <p class="text-slate-600">Calcula la derivada implícita de $x^3y + y^2 = 8x$.</p>
-            </div>
-            
-            <div class="space-y-6">
-                <div class="flex flex-col md:flex-row gap-4 items-start md:items-center">
-                    <div class="bg-slate-100 text-slate-600 w-8 h-8 rounded-full flex items-center justify-center font-bold shrink-0">1</div>
-                    <div class="flex-1">
-                        <p class="text-sm font-semibold text-slate-700 mb-2">Aplicamos derivada en ambos lados. ¡Cuidado con el término $x^3y$! Requiere la regla del producto:</p>
-                        <div class="math-container bg-slate-50 p-4 rounded-xl text-center border border-slate-100">
-                            $$\frac{d}{dx}[x^3 \cdot y] + \frac{d}{dx}[y^2] = \frac{d}{dx}[8x]$$
-                        </div>
-                    </div>
-                </div>
-
-                <div class="flex flex-col md:flex-row gap-4 items-start md:items-center">
-                    <div class="bg-slate-100 text-slate-600 w-8 h-8 rounded-full flex items-center justify-center font-bold shrink-0">2</div>
-                    <div class="flex-1">
-                        <p class="text-sm font-semibold text-slate-700 mb-2">Desarrollamos las derivadas:</p>
-                        <div class="math-container bg-slate-50 p-4 rounded-xl text-center border border-slate-100">
-                            $$(3x^2 \cdot y + x^3 \cdot y') + (2y \cdot y') = 8$$
-                        </div>
-                    </div>
-                </div>
-
-                <div class="flex flex-col md:flex-row gap-4 items-start md:items-center">
-                    <div class="bg-slate-100 text-slate-600 w-8 h-8 rounded-full flex items-center justify-center font-bold shrink-0">3</div>
-                    <div class="flex-1">
-                        <p class="text-sm font-semibold text-slate-700 mb-2">Dejamos los términos con $y'$ del lado izquierdo y pasamos el resto al derecho:</p>
-                        <div class="math-container bg-slate-50 p-4 rounded-xl text-center border border-slate-100">
-                            $$x^3 \cdot y' + 2y \cdot y' = 8 - 3x^2y$$
-                        </div>
-                    </div>
-                </div>
-
-                <div class="flex flex-col md:flex-row gap-4 items-start md:items-center">
-                    <div class="bg-indigo-100 text-indigo-600 w-8 h-8 rounded-full flex items-center justify-center font-bold shrink-0">4</div>
-                    <div class="flex-1">
-                        <p class="text-sm font-semibold text-slate-700 mb-2">Factorizamos $y'$ por factor común y despejamos el resultado final:</p>
-                        <div class="math-container bg-indigo-50 p-4 rounded-xl text-center border border-indigo-100">
-                            $$y'(x^3 + 2y) = 8 - 3x^2y \implies y' = \frac{8 - 3x^2y}{x^3 + 2y}$$
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="bg-[#0f172a] rounded-3xl p-8 shadow-xl relative overflow-hidden">
-            <div class="absolute top-0 right-0 bg-rose-500 text-white px-4 py-1 rounded-bl-2xl font-bold text-sm shadow-md">
-                Nivel Avanzado
-            </div>
-            <div class="mb-6">
-                <h2 class="text-2xl font-bold text-white mb-2">Ejemplo 3: Funciones Trascendentales y Cadena</h2>
-                <p class="text-slate-300">Encuentra $y'$ para la ecuación trigonométrica $\sin(xy) = x^2 - y$.</p>
-            </div>
-            
-            <div class="space-y-6 text-slate-200">
-                <div class="flex flex-col md:flex-row gap-4 items-start md:items-center">
-                    <div class="bg-slate-700 text-slate-300 w-8 h-8 rounded-full flex items-center justify-center font-bold shrink-0">1</div>
-                    <div class="flex-1">
-                        <p class="text-sm font-semibold mb-2">Derivamos ambos lados. El argumento del seno es un producto, por lo que usamos Regla de la Cadena + Regla del Producto:</p>
-                        <div class="math-container bg-black/40 p-4 rounded-xl text-center border border-slate-700">
-                            $$\cos(xy) \cdot \frac{d}{dx}[xy] = 2x - y'$$
-                        </div>
-                    </div>
-                </div>
-
-                <div class="flex flex-col md:flex-row gap-4 items-start md:items-center">
-                    <div class="bg-slate-700 text-slate-300 w-8 h-8 rounded-full flex items-center justify-center font-bold shrink-0">2</div>
-                    <div class="flex-1">
-                        <p class="text-sm font-semibold mb-2">Expandimos la derivada del producto dentro del argumento:</p>
-                        <div class="math-container bg-black/40 p-4 rounded-xl text-center border border-slate-700">
-                            $$\cos(xy) \cdot (1 \cdot y + x \cdot y') = 2x - y'$$
-                        </div>
-                    </div>
-                </div>
-
-                <div class="flex flex-col md:flex-row gap-4 items-start md:items-center">
-                    <div class="bg-slate-700 text-slate-300 w-8 h-8 rounded-full flex items-center justify-center font-bold shrink-0">3</div>
-                    <div class="flex-1">
-                        <p class="text-sm font-semibold mb-2">Distribuimos el coseno para "liberar" a los términos con $y'$:</p>
-                        <div class="math-container bg-black/40 p-4 rounded-xl text-center border border-slate-700">
-                            $$y\cos(xy) + xy'\cos(xy) = 2x - y'$$
-                        </div>
-                    </div>
-                </div>
-
-                <div class="flex flex-col md:flex-row gap-4 items-start md:items-center">
-                    <div class="bg-indigo-500 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold shrink-0">4</div>
-                    <div class="flex-1">
-                        <p class="text-sm font-semibold mb-2">Agrupamos, factorizamos $y'$ y dividimos para el despeje final:</p>
-                        <div class="math-container bg-indigo-900/50 p-4 rounded-xl text-center border border-indigo-500/30">
-                            $$xy'\cos(xy) + y' = 2x - y\cos(xy)$$
-                            $$y'(x\cos(xy) + 1) = 2x - y\cos(xy) \implies y' = \frac{2x - y\cos(xy)}{x\cos(xy) + 1}$$
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <div class="border-t-2 border-dashed border-slate-200 pt-12">
-            <h2 class="text-2xl md:text-3xl font-bold text-slate-900 mb-6 flex items-center">
-                <i class="fa-solid fa-chart-line text-indigo-600 mr-4"></i> Aplicación: Ecuación de la Recta Tangente
-            </h2>
-            <div class="bg-white rounded-2xl p-8 border border-slate-200 shadow-sm">
-                <p class="text-slate-600 mb-6">
-                    <strong>Problema:</strong> Encuentra la ecuación de la recta tangente a la curva (Folium de Descartes) descrita por la ecuación $x^3 + y^3 = 6xy$ en el punto $(3, 3)$.
+                <p class="text-slate-600 text-sm mt-3 leading-relaxed">
+                    Encuentra \(\dfrac{dy}{dx}\) para la circunferencia de radio 5. Esta ecuación no puede resolverse fácilmente para \(y\) en un solo término, por lo que usamos derivación implícita.
                 </p>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div>
-                        <h4 class="font-bold text-indigo-600 mb-3"><i class="fa-solid fa-calculator mr-2"></i> Paso A: Hallar la Derivada ($m$)</h4>
-                        <p class="text-sm text-slate-600 mb-4">Primero calculamos $y'$ implícitamente:</p>
-                        <div class="math-container bg-slate-50 p-4 rounded-xl text-sm border border-slate-100 space-y-2">
-                            <p>$$3x^2 + 3y^2y' = 6(1 \cdot y + x \cdot y')$$</p>
-                            <p>$$3x^2 + 3y^2y' = 6y + 6xy'$$</p>
-                            <p>$$3y^2y' - 6xy' = 6y - 3x^2$$</p>
-                            <p>$$y' = \frac{6y - 3x^2}{3y^2 - 6x}$$</p>
-                        </div>
-                    </div>
-                    <div>
-                        <h4 class="font-bold text-indigo-600 mb-3"><i class="fa-solid fa-location-crosshairs mr-2"></i> Paso B: Evaluar y Construir</h4>
-                        <p class="text-sm text-slate-600 mb-4">Sustituimos el punto $(3, 3)$ en la derivada para obtener la pendiente ($m$), y luego armamos la ecuación punto-pendiente:</p>
-                        <div class="math-container bg-indigo-50 p-4 rounded-xl text-sm border border-indigo-100 space-y-2">
-                            <p>$$m = \frac{6(3) - 3(3)^2}{3(3)^2 - 6(3)} = \frac{18 - 27}{27 - 18} = \frac{-9}{9} = -1$$</p>
-                            <p>Ecuación: $y - y_1 = m(x - x_1)$</p>
-                            <p>$$y - 3 = -1(x - 3)$$</p>
-                            <p class="font-bold text-indigo-700">$$y = -x + 6$$</p>
+            </div>
+
+            <!-- Steps accordion -->
+            <div class="px-6 pb-6 space-y-2 mt-3">
+
+                <div class="step-item" data-example="1" data-step="1">
+                    <button class="step-btn w-full flex items-center space-x-3 px-4 py-3 rounded-xl bg-slate-50 hover:bg-indigo-50 hover:text-indigo-700 transition-all text-left">
+                        <span class="step-num">1</span>
+                        <span class="flex-1 text-sm font-medium text-slate-700">Derivar ambos lados respecto a \(x\)</span>
+                        <i class="fa-solid fa-chevron-down step-chevron text-slate-400 text-xs"></i>
+                    </button>
+                    <div class="step-content px-4 pt-0 pb-2">
+                        <div class="pt-3 pb-1 space-y-2 text-sm text-slate-600 leading-relaxed">
+                            <p>Aplicamos \(\dfrac{d}{dx}\) a cada término de la ecuación:</p>
+                            <div class="math-block">$$\frac{d}{dx}(x^2) + \frac{d}{dx}(y^2) = \frac{d}{dx}(25)$$</div>
+                            <p class="mt-2">La derivada de una constante es 0. Para el término \(y^2\) debemos aplicar la <strong>Regla de la Cadena</strong>, ya que \(y\) es una función implícita de \(x\):</p>
+                            <div class="math-block">$$2x + 2y\,\frac{dy}{dx} = 0$$</div>
                         </div>
                     </div>
                 </div>
+
+                <div class="step-item" data-example="1" data-step="2">
+                    <button class="step-btn w-full flex items-center space-x-3 px-4 py-3 rounded-xl bg-slate-50 hover:bg-indigo-50 hover:text-indigo-700 transition-all text-left">
+                        <span class="step-num">2</span>
+                        <span class="flex-1 text-sm font-medium text-slate-700">Aislar \(\dfrac{dy}{dx}\)</span>
+                        <i class="fa-solid fa-chevron-down step-chevron text-slate-400 text-xs"></i>
+                    </button>
+                    <div class="step-content px-4 pt-0 pb-2">
+                        <div class="pt-3 pb-1 space-y-2 text-sm text-slate-600 leading-relaxed">
+                            <p>Movemos el término con \(x\) al lado derecho:</p>
+                            <div class="math-block">$$2y\,\frac{dy}{dx} = -2x$$</div>
+                            <p class="mt-2">Dividimos entre \(2y\):</p>
+                            <div class="math-block">$$\frac{dy}{dx} = \frac{-2x}{2y} = -\frac{x}{y}$$</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step-item" data-example="1" data-step="3">
+                    <button class="step-btn w-full flex items-center space-x-3 px-4 py-3 rounded-xl bg-slate-50 hover:bg-indigo-50 hover:text-indigo-700 transition-all text-left">
+                        <span class="step-num">3</span>
+                        <span class="flex-1 text-sm font-medium text-slate-700">Resultado e interpretación geométrica</span>
+                        <i class="fa-solid fa-chevron-down step-chevron text-slate-400 text-xs"></i>
+                    </button>
+                    <div class="step-content px-4 pt-0 pb-2">
+                        <div class="pt-3 pb-1 space-y-2 text-sm text-slate-600 leading-relaxed">
+                            <p>La pendiente de la tangente en cualquier punto \((x,y)\) de la circunferencia es:</p>
+                            <div class="result-box">$$\boxed{\frac{dy}{dx} = -\frac{x}{y}}$$</div>
+                            <p class="mt-3">Por ejemplo, en el punto \((3, 4)\): la pendiente es \(-\dfrac{3}{4}\). Observa cómo el resultado siempre contiene tanto \(x\) como \(y\), característica de la derivación implícita.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex justify-end pt-1">
+                    <button class="mark-done-btn text-xs font-medium text-slate-400 hover:text-emerald-600 flex items-center space-x-1.5 transition-colors" data-id="1">
+                        <i class="fa-regular fa-circle-check"></i>
+                        <span>Marcar como revisado</span>
+                    </button>
+                </div>
             </div>
+        </article>
+
+        <!-- ────────────────────────────────────
+             EJEMPLO 2 — BÁSICO
+        ──────────────────────────────────── -->
+        <article class="example-card bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden fade-up" data-cat="basico" data-id="2">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between p-6 pb-4 gap-3">
+                <div class="flex items-center space-x-3">
+                    <div class="bg-indigo-600 text-white w-9 h-9 rounded-xl flex items-center justify-center font-bold text-sm shadow shadow-indigo-200 flex-shrink-0">02</div>
+                    <div>
+                        <h2 class="font-bold text-slate-900 text-lg">Curva Cúbica</h2>
+                        <p class="text-slate-500 text-sm">Potencias de \(y\) — Regla de la cadena en potencias</p>
+                    </div>
+                </div>
+                <span class="badge-basico self-start sm:self-auto px-3 py-1 rounded-full text-xs font-semibold">Básico</span>
+            </div>
+
+            <div class="px-6 pb-3">
+                <div class="math-block text-center text-base">
+                    $$x^3 + y^3 = 6xy$$
+                </div>
+                <p class="text-slate-600 text-sm mt-3 leading-relaxed">
+                    Esta es la <em>Hoja de Descartes</em>, una curva clásica. Encuentra \(\dfrac{dy}{dx}\). Observa que el lado derecho involucra un producto de \(x\) e \(y\), requiriendo la Regla del Producto.
+                </p>
+            </div>
+
+            <div class="px-6 pb-6 space-y-2 mt-3">
+
+                <div class="step-item" data-example="2" data-step="1">
+                    <button class="step-btn w-full flex items-center space-x-3 px-4 py-3 rounded-xl bg-slate-50 hover:bg-indigo-50 hover:text-indigo-700 transition-all text-left">
+                        <span class="step-num">1</span>
+                        <span class="flex-1 text-sm font-medium text-slate-700">Derivar ambos lados — atención al producto \(6xy\)</span>
+                        <i class="fa-solid fa-chevron-down step-chevron text-slate-400 text-xs"></i>
+                    </button>
+                    <div class="step-content px-4 pt-0 pb-2">
+                        <div class="pt-3 pb-1 space-y-2 text-sm text-slate-600 leading-relaxed">
+                            <p>Lado izquierdo usando Regla de la Cadena en \(y^3\):</p>
+                            <div class="math-block">$$3x^2 + 3y^2\frac{dy}{dx} = \frac{d}{dx}(6xy)$$</div>
+                            <p class="mt-2">Para el lado derecho aplicamos la <strong>Regla del Producto</strong> a \(6xy\):</p>
+                            <div class="math-block">$$\frac{d}{dx}(6xy) = 6\left(y + x\frac{dy}{dx}\right) = 6y + 6x\frac{dy}{dx}$$</div>
+                            <p class="mt-2">Entonces la ecuación derivada completa queda:</p>
+                            <div class="math-block">$$3x^2 + 3y^2\frac{dy}{dx} = 6y + 6x\frac{dy}{dx}$$</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step-item" data-example="2" data-step="2">
+                    <button class="step-btn w-full flex items-center space-x-3 px-4 py-3 rounded-xl bg-slate-50 hover:bg-indigo-50 hover:text-indigo-700 transition-all text-left">
+                        <span class="step-num">2</span>
+                        <span class="flex-1 text-sm font-medium text-slate-700">Agrupar términos con \(\dfrac{dy}{dx}\)</span>
+                        <i class="fa-solid fa-chevron-down step-chevron text-slate-400 text-xs"></i>
+                    </button>
+                    <div class="step-content px-4 pt-0 pb-2">
+                        <div class="pt-3 pb-1 space-y-2 text-sm text-slate-600 leading-relaxed">
+                            <p>Movemos todos los términos con \(\dfrac{dy}{dx}\) al lado izquierdo:</p>
+                            <div class="math-block">$$3y^2\frac{dy}{dx} - 6x\frac{dy}{dx} = 6y - 3x^2$$</div>
+                            <p class="mt-2">Factorizamos \(\dfrac{dy}{dx}\):</p>
+                            <div class="math-block">$$\frac{dy}{dx}(3y^2 - 6x) = 6y - 3x^2$$</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step-item" data-example="2" data-step="3">
+                    <button class="step-btn w-full flex items-center space-x-3 px-4 py-3 rounded-xl bg-slate-50 hover:bg-indigo-50 hover:text-indigo-700 transition-all text-left">
+                        <span class="step-num">3</span>
+                        <span class="flex-1 text-sm font-medium text-slate-700">Despejar y simplificar</span>
+                        <i class="fa-solid fa-chevron-down step-chevron text-slate-400 text-xs"></i>
+                    </button>
+                    <div class="step-content px-4 pt-0 pb-2">
+                        <div class="pt-3 pb-1 space-y-2 text-sm text-slate-600 leading-relaxed">
+                            <p>Dividimos ambos lados entre \((3y^2 - 6x)\) y simplificamos factor 3:</p>
+                            <div class="result-box">$$\boxed{\frac{dy}{dx} = \frac{6y - 3x^2}{3y^2 - 6x} = \frac{2y - x^2}{y^2 - 2x}}$$</div>
+                            <p class="mt-3 text-slate-500">⚠️ El resultado no está definido cuando \(y^2 = 2x\), lo que corresponde a los puntos donde la curva tiene tangente vertical.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex justify-end pt-1">
+                    <button class="mark-done-btn text-xs font-medium text-slate-400 hover:text-emerald-600 flex items-center space-x-1.5 transition-colors" data-id="2">
+                        <i class="fa-regular fa-circle-check"></i>
+                        <span>Marcar como revisado</span>
+                    </button>
+                </div>
+            </div>
+        </article>
+
+        <!-- ────────────────────────────────────
+             EJEMPLO 3 — INTERMEDIO
+        ──────────────────────────────────── -->
+        <article class="example-card bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden fade-up" data-cat="intermedio" data-id="3">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between p-6 pb-4 gap-3">
+                <div class="flex items-center space-x-3">
+                    <div class="bg-violet-600 text-white w-9 h-9 rounded-xl flex items-center justify-center font-bold text-sm shadow shadow-violet-200 flex-shrink-0">03</div>
+                    <div>
+                        <h2 class="font-bold text-slate-900 text-lg">Función Trigonométrica Implícita</h2>
+                        <p class="text-slate-500 text-sm">Seno y Coseno combinados con regla de la cadena</p>
+                    </div>
+                </div>
+                <span class="badge-intermedio self-start sm:self-auto px-3 py-1 rounded-full text-xs font-semibold">Intermedio</span>
+            </div>
+
+            <div class="px-6 pb-3">
+                <div class="math-block text-center text-base">
+                    $$\sin(x + y) = y^2 \cos(x)$$
+                </div>
+                <p class="text-slate-600 text-sm mt-3 leading-relaxed">
+                    Esta ecuación mezcla funciones trigonométricas con productos implícitos. Necesitaremos la Regla de la Cadena en el seno compuesto y la Regla del Producto en el lado derecho.
+                </p>
+            </div>
+
+            <div class="px-6 pb-6 space-y-2 mt-3">
+
+                <div class="step-item" data-example="3" data-step="1">
+                    <button class="step-btn w-full flex items-center space-x-3 px-4 py-3 rounded-xl bg-slate-50 hover:bg-indigo-50 hover:text-indigo-700 transition-all text-left">
+                        <span class="step-num">1</span>
+                        <span class="flex-1 text-sm font-medium text-slate-700">Derivar el lado izquierdo: \(\sin(x+y)\)</span>
+                        <i class="fa-solid fa-chevron-down step-chevron text-slate-400 text-xs"></i>
+                    </button>
+                    <div class="step-content px-4 pt-0 pb-2">
+                        <div class="pt-3 pb-1 space-y-2 text-sm text-slate-600 leading-relaxed">
+                            <p>El argumento del seno es \((x + y)\), así que aplicamos la cadena:</p>
+                            <div class="math-block">$$\frac{d}{dx}[\sin(x+y)] = \cos(x+y)\cdot\frac{d}{dx}(x+y) = \cos(x+y)\left(1 + \frac{dy}{dx}\right)$$</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step-item" data-example="3" data-step="2">
+                    <button class="step-btn w-full flex items-center space-x-3 px-4 py-3 rounded-xl bg-slate-50 hover:bg-indigo-50 hover:text-indigo-700 transition-all text-left">
+                        <span class="step-num">2</span>
+                        <span class="flex-1 text-sm font-medium text-slate-700">Derivar el lado derecho: \(y^2\cos(x)\)</span>
+                        <i class="fa-solid fa-chevron-down step-chevron text-slate-400 text-xs"></i>
+                    </button>
+                    <div class="step-content px-4 pt-0 pb-2">
+                        <div class="pt-3 pb-1 space-y-2 text-sm text-slate-600 leading-relaxed">
+                            <p>Usamos la Regla del Producto con \(u = y^2\) y \(v = \cos(x)\):</p>
+                            <div class="math-block">$$\frac{d}{dx}[y^2\cos(x)] = 2y\frac{dy}{dx}\cos(x) + y^2(-\sin x) = 2y\cos(x)\frac{dy}{dx} - y^2\sin(x)$$</div>
+                            <p class="mt-2">La ecuación derivada completa:</p>
+                            <div class="math-block">$$\cos(x+y)\left(1+\frac{dy}{dx}\right) = 2y\cos(x)\frac{dy}{dx} - y^2\sin(x)$$</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step-item" data-example="3" data-step="3">
+                    <button class="step-btn w-full flex items-center space-x-3 px-4 py-3 rounded-xl bg-slate-50 hover:bg-indigo-50 hover:text-indigo-700 transition-all text-left">
+                        <span class="step-num">3</span>
+                        <span class="flex-1 text-sm font-medium text-slate-700">Expandir, agrupar y despejar</span>
+                        <i class="fa-solid fa-chevron-down step-chevron text-slate-400 text-xs"></i>
+                    </button>
+                    <div class="step-content px-4 pt-0 pb-2">
+                        <div class="pt-3 pb-1 space-y-2 text-sm text-slate-600 leading-relaxed">
+                            <p>Expandimos el lado izquierdo:</p>
+                            <div class="math-block">$$\cos(x+y) + \cos(x+y)\frac{dy}{dx} = 2y\cos(x)\frac{dy}{dx} - y^2\sin(x)$$</div>
+                            <p class="mt-2">Agrupamos los términos con \(\dfrac{dy}{dx}\):</p>
+                            <div class="math-block">$$\cos(x+y)\frac{dy}{dx} - 2y\cos(x)\frac{dy}{dx} = -y^2\sin(x) - \cos(x+y)$$</div>
+                            <p class="mt-2">Factorizamos y despejamos:</p>
+                            <div class="result-box">$$\boxed{\frac{dy}{dx} = \frac{-y^2\sin(x) - \cos(x+y)}{\cos(x+y) - 2y\cos(x)}}$$</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex justify-end pt-1">
+                    <button class="mark-done-btn text-xs font-medium text-slate-400 hover:text-emerald-600 flex items-center space-x-1.5 transition-colors" data-id="3">
+                        <i class="fa-regular fa-circle-check"></i>
+                        <span>Marcar como revisado</span>
+                    </button>
+                </div>
+            </div>
+        </article>
+
+        <!-- ────────────────────────────────────
+             EJEMPLO 4 — TANGENTE
+        ──────────────────────────────────── -->
+        <article class="example-card bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden fade-up" data-cat="tangente" data-id="4">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between p-6 pb-4 gap-3">
+                <div class="flex items-center space-x-3">
+                    <div class="bg-violet-600 text-white w-9 h-9 rounded-xl flex items-center justify-center font-bold text-sm shadow shadow-violet-200 flex-shrink-0">04</div>
+                    <div>
+                        <h2 class="font-bold text-slate-900 text-lg">Recta Tangente a una Elipse</h2>
+                        <p class="text-slate-500 text-sm">Evaluar la derivada en un punto específico</p>
+                    </div>
+                </div>
+                <div class="flex space-x-2">
+                    <span class="badge-intermedio self-start sm:self-auto px-3 py-1 rounded-full text-xs font-semibold">Intermedio</span>
+                    <span class="bg-amber-50 text-amber-700 self-start sm:self-auto px-3 py-1 rounded-full text-xs font-semibold">Tangente</span>
+                </div>
+            </div>
+
+            <div class="px-6 pb-3">
+                <div class="math-block text-center text-base">
+                    $$\frac{x^2}{9} + \frac{y^2}{4} = 1 \quad \text{en el punto}\; \left(\frac{3\sqrt{2}}{2},\, \sqrt{2}\right)$$
+                </div>
+                <p class="text-slate-600 text-sm mt-3 leading-relaxed">
+                    Hallar la ecuación de la recta tangente a la elipse en el punto dado. Este tipo de problema aplica la derivada implícita como pendiente de la recta.
+                </p>
+            </div>
+
+            <div class="px-6 pb-6 space-y-2 mt-3">
+
+                <div class="step-item" data-example="4" data-step="1">
+                    <button class="step-btn w-full flex items-center space-x-3 px-4 py-3 rounded-xl bg-slate-50 hover:bg-indigo-50 hover:text-indigo-700 transition-all text-left">
+                        <span class="step-num">1</span>
+                        <span class="flex-1 text-sm font-medium text-slate-700">Derivar la ecuación de la elipse</span>
+                        <i class="fa-solid fa-chevron-down step-chevron text-slate-400 text-xs"></i>
+                    </button>
+                    <div class="step-content px-4 pt-0 pb-2">
+                        <div class="pt-3 pb-1 space-y-2 text-sm text-slate-600 leading-relaxed">
+                            <p>Derivamos respecto a \(x\):</p>
+                            <div class="math-block">$$\frac{2x}{9} + \frac{2y}{4}\frac{dy}{dx} = 0$$</div>
+                            <p class="mt-2">Simplificamos:</p>
+                            <div class="math-block">$$\frac{2x}{9} + \frac{y}{2}\frac{dy}{dx} = 0$$</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step-item" data-example="4" data-step="2">
+                    <button class="step-btn w-full flex items-center space-x-3 px-4 py-3 rounded-xl bg-slate-50 hover:bg-indigo-50 hover:text-indigo-700 transition-all text-left">
+                        <span class="step-num">2</span>
+                        <span class="flex-1 text-sm font-medium text-slate-700">Despejar \(\dfrac{dy}{dx}\) y evaluar en el punto</span>
+                        <i class="fa-solid fa-chevron-down step-chevron text-slate-400 text-xs"></i>
+                    </button>
+                    <div class="step-content px-4 pt-0 pb-2">
+                        <div class="pt-3 pb-1 space-y-2 text-sm text-slate-600 leading-relaxed">
+                            <div class="math-block">$$\frac{dy}{dx} = -\frac{2x/9}{y/2} = -\frac{4x}{9y}$$</div>
+                            <p class="mt-2">Sustituimos \(x = \dfrac{3\sqrt{2}}{2}\) e \(y = \sqrt{2}\):</p>
+                            <div class="math-block">$$\frac{dy}{dx}\bigg|_P = -\frac{4\cdot\frac{3\sqrt{2}}{2}}{9\cdot\sqrt{2}} = -\frac{6\sqrt{2}}{9\sqrt{2}} = -\frac{6}{9} = -\frac{2}{3}$$</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step-item" data-example="4" data-step="3">
+                    <button class="step-btn w-full flex items-center space-x-3 px-4 py-3 rounded-xl bg-slate-50 hover:bg-indigo-50 hover:text-indigo-700 transition-all text-left">
+                        <span class="step-num">3</span>
+                        <span class="flex-1 text-sm font-medium text-slate-700">Ecuación de la recta tangente</span>
+                        <i class="fa-solid fa-chevron-down step-chevron text-slate-400 text-xs"></i>
+                    </button>
+                    <div class="step-content px-4 pt-0 pb-2">
+                        <div class="pt-3 pb-1 space-y-2 text-sm text-slate-600 leading-relaxed">
+                            <p>Usamos la forma punto-pendiente \(y - y_0 = m(x - x_0)\):</p>
+                            <div class="math-block">$$y - \sqrt{2} = -\frac{2}{3}\left(x - \frac{3\sqrt{2}}{2}\right)$$</div>
+                            <p class="mt-2">Simplificando:</p>
+                            <div class="result-box">$$\boxed{y = -\frac{2}{3}x + \sqrt{2} + \sqrt{2} = -\frac{2}{3}x + 2\sqrt{2}}$$</div>
+                            <p class="mt-3 text-slate-500">La pendiente negativa \(-\frac{2}{3}\) indica que la tangente desciende de izquierda a derecha en ese punto de la elipse.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex justify-end pt-1">
+                    <button class="mark-done-btn text-xs font-medium text-slate-400 hover:text-emerald-600 flex items-center space-x-1.5 transition-colors" data-id="4">
+                        <i class="fa-regular fa-circle-check"></i>
+                        <span>Marcar como revisado</span>
+                    </button>
+                </div>
+            </div>
+        </article>
+
+        <!-- ────────────────────────────────────
+             EJEMPLO 5 — SEGUNDA DERIVADA
+        ──────────────────────────────────── -->
+        <article class="example-card bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden fade-up" data-cat="segunda" data-id="5">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between p-6 pb-4 gap-3">
+                <div class="flex items-center space-x-3">
+                    <div class="bg-fuchsia-600 text-white w-9 h-9 rounded-xl flex items-center justify-center font-bold text-sm shadow shadow-fuchsia-200 flex-shrink-0">05</div>
+                    <div>
+                        <h2 class="font-bold text-slate-900 text-lg">Segunda Derivada Implícita</h2>
+                        <p class="text-slate-500 text-sm">Derivar \(\dfrac{dy}{dx}\) nuevamente para obtener \(\dfrac{d^2y}{dx^2}\)</p>
+                    </div>
+                </div>
+                <div class="flex space-x-2">
+                    <span class="badge-avanzado self-start sm:self-auto px-3 py-1 rounded-full text-xs font-semibold">Avanzado</span>
+                    <span class="bg-cyan-50 text-cyan-700 self-start sm:self-auto px-3 py-1 rounded-full text-xs font-semibold">2ª Derivada</span>
+                </div>
+            </div>
+
+            <div class="px-6 pb-3">
+                <div class="math-block text-center text-base">
+                    $$x^2 + y^2 = 25 \quad\Longrightarrow\quad \text{Hallar}\;\frac{d^2y}{dx^2}$$
+                </div>
+                <p class="text-slate-600 text-sm mt-3 leading-relaxed">
+                    Usamos la circunferencia del Ejemplo 01, pero ahora calculamos la segunda derivada. Esta nos indica la concavidad de la curva en cada punto.
+                </p>
+            </div>
+
+            <div class="px-6 pb-6 space-y-2 mt-3">
+
+                <div class="step-item" data-example="5" data-step="1">
+                    <button class="step-btn w-full flex items-center space-x-3 px-4 py-3 rounded-xl bg-slate-50 hover:bg-indigo-50 hover:text-indigo-700 transition-all text-left">
+                        <span class="step-num">1</span>
+                        <span class="flex-1 text-sm font-medium text-slate-700">Recordar la primera derivada</span>
+                        <i class="fa-solid fa-chevron-down step-chevron text-slate-400 text-xs"></i>
+                    </button>
+                    <div class="step-content px-4 pt-0 pb-2">
+                        <div class="pt-3 pb-1 space-y-2 text-sm text-slate-600 leading-relaxed">
+                            <p>Del Ejemplo 01 ya sabemos que:</p>
+                            <div class="math-block">$$\frac{dy}{dx} = -\frac{x}{y}$$</div>
+                            <p class="mt-2">Para la segunda derivada derivamos este resultado respecto a \(x\), usando la <strong>Regla del Cociente</strong>.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step-item" data-example="5" data-step="2">
+                    <button class="step-btn w-full flex items-center space-x-3 px-4 py-3 rounded-xl bg-slate-50 hover:bg-indigo-50 hover:text-indigo-700 transition-all text-left">
+                        <span class="step-num">2</span>
+                        <span class="flex-1 text-sm font-medium text-slate-700">Aplicar Regla del Cociente a \(-x/y\)</span>
+                        <i class="fa-solid fa-chevron-down step-chevron text-slate-400 text-xs"></i>
+                    </button>
+                    <div class="step-content px-4 pt-0 pb-2">
+                        <div class="pt-3 pb-1 space-y-2 text-sm text-slate-600 leading-relaxed">
+                            <div class="math-block">$$\frac{d^2y}{dx^2} = \frac{d}{dx}\!\left(-\frac{x}{y}\right) = -\frac{(1)\cdot y - x\cdot\frac{dy}{dx}}{y^2}$$</div>
+                            <p class="mt-2">Sustituimos \(\dfrac{dy}{dx} = -\dfrac{x}{y}\):</p>
+                            <div class="math-block">$$= -\frac{y - x\!\left(-\dfrac{x}{y}\right)}{y^2} = -\frac{y + \dfrac{x^2}{y}}{y^2}$$</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step-item" data-example="5" data-step="3">
+                    <button class="step-btn w-full flex items-center space-x-3 px-4 py-3 rounded-xl bg-slate-50 hover:bg-indigo-50 hover:text-indigo-700 transition-all text-left">
+                        <span class="step-num">3</span>
+                        <span class="flex-1 text-sm font-medium text-slate-700">Simplificar usando la ecuación original</span>
+                        <i class="fa-solid fa-chevron-down step-chevron text-slate-400 text-xs"></i>
+                    </button>
+                    <div class="step-content px-4 pt-0 pb-2">
+                        <div class="pt-3 pb-1 space-y-2 text-sm text-slate-600 leading-relaxed">
+                            <p>Multiplicamos numerador y denominador por \(y\):</p>
+                            <div class="math-block">$$\frac{d^2y}{dx^2} = -\frac{y^2 + x^2}{y^3}$$</div>
+                            <p class="mt-2">Como \(x^2 + y^2 = 25\), sustituimos:</p>
+                            <div class="result-box">$$\boxed{\frac{d^2y}{dx^2} = -\frac{25}{y^3}}$$</div>
+                            <p class="mt-3 text-slate-500">El signo negativo confirma que la parte superior de la circunferencia (\(y > 0\)) es cóncava hacia abajo, y la parte inferior (\(y < 0\)) es cóncava hacia arriba.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex justify-end pt-1">
+                    <button class="mark-done-btn text-xs font-medium text-slate-400 hover:text-emerald-600 flex items-center space-x-1.5 transition-colors" data-id="5">
+                        <i class="fa-regular fa-circle-check"></i>
+                        <span>Marcar como revisado</span>
+                    </button>
+                </div>
+            </div>
+        </article>
+
+        <!-- ────────────────────────────────────
+             EJEMPLO 6 — AVANZADO (Logaritmo)
+        ──────────────────────────────────── -->
+        <article class="example-card bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden fade-up" data-cat="avanzado" data-id="6">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between p-6 pb-4 gap-3">
+                <div class="flex items-center space-x-3">
+                    <div class="bg-fuchsia-600 text-white w-9 h-9 rounded-xl flex items-center justify-center font-bold text-sm shadow shadow-fuchsia-200 flex-shrink-0">06</div>
+                    <div>
+                        <h2 class="font-bold text-slate-900 text-lg">Función Implícita con Logaritmo Natural</h2>
+                        <p class="text-slate-500 text-sm">Derivación con funciones logarítmicas compuestas</p>
+                    </div>
+                </div>
+                <span class="badge-avanzado self-start sm:self-auto px-3 py-1 rounded-full text-xs font-semibold">Avanzado</span>
+            </div>
+
+            <div class="px-6 pb-3">
+                <div class="math-block text-center text-base">
+                    $$e^y + \ln(xy) = x^2$$
+                </div>
+                <p class="text-slate-600 text-sm mt-3 leading-relaxed">
+                    Esta ecuación involucra una función exponencial de \(y\) y un logaritmo de un producto. Combina múltiples reglas de derivación en un solo problema.
+                </p>
+            </div>
+
+            <div class="px-6 pb-6 space-y-2 mt-3">
+
+                <div class="step-item" data-example="6" data-step="1">
+                    <button class="step-btn w-full flex items-center space-x-3 px-4 py-3 rounded-xl bg-slate-50 hover:bg-indigo-50 hover:text-indigo-700 transition-all text-left">
+                        <span class="step-num">1</span>
+                        <span class="flex-1 text-sm font-medium text-slate-700">Expandir \(\ln(xy)\) y derivar \(e^y\)</span>
+                        <i class="fa-solid fa-chevron-down step-chevron text-slate-400 text-xs"></i>
+                    </button>
+                    <div class="step-content px-4 pt-0 pb-2">
+                        <div class="pt-3 pb-1 space-y-2 text-sm text-slate-600 leading-relaxed">
+                            <p>Usamos la propiedad \(\ln(xy) = \ln x + \ln y\) para simplificar antes de derivar:</p>
+                            <div class="math-block">$$e^y + \ln x + \ln y = x^2$$</div>
+                            <p class="mt-2">Ahora derivamos término a término:</p>
+                            <div class="math-block">$$e^y\frac{dy}{dx} + \frac{1}{x} + \frac{1}{y}\frac{dy}{dx} = 2x$$</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step-item" data-example="6" data-step="2">
+                    <button class="step-btn w-full flex items-center space-x-3 px-4 py-3 rounded-xl bg-slate-50 hover:bg-indigo-50 hover:text-indigo-700 transition-all text-left">
+                        <span class="step-num">2</span>
+                        <span class="flex-1 text-sm font-medium text-slate-700">Agrupar y factorizar \(\dfrac{dy}{dx}\)</span>
+                        <i class="fa-solid fa-chevron-down step-chevron text-slate-400 text-xs"></i>
+                    </button>
+                    <div class="step-content px-4 pt-0 pb-2">
+                        <div class="pt-3 pb-1 space-y-2 text-sm text-slate-600 leading-relaxed">
+                            <p>Movemos los términos con \(\dfrac{dy}{dx}\) al lado izquierdo:</p>
+                            <div class="math-block">$$\frac{dy}{dx}\left(e^y + \frac{1}{y}\right) = 2x - \frac{1}{x}$$</div>
+                            <p class="mt-2">Simplificamos el factor entre paréntesis con denominador común \(y\):</p>
+                            <div class="math-block">$$\frac{dy}{dx}\cdot\frac{ye^y + 1}{y} = \frac{2x^2 - 1}{x}$$</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step-item" data-example="6" data-step="3">
+                    <button class="step-btn w-full flex items-center space-x-3 px-4 py-3 rounded-xl bg-slate-50 hover:bg-indigo-50 hover:text-indigo-700 transition-all text-left">
+                        <span class="step-num">3</span>
+                        <span class="flex-1 text-sm font-medium text-slate-700">Despejar el resultado final</span>
+                        <i class="fa-solid fa-chevron-down step-chevron text-slate-400 text-xs"></i>
+                    </button>
+                    <div class="step-content px-4 pt-0 pb-2">
+                        <div class="pt-3 pb-1 space-y-2 text-sm text-slate-600 leading-relaxed">
+                            <p>Multiplicamos ambos lados por \(\dfrac{y}{ye^y+1}\):</p>
+                            <div class="result-box">$$\boxed{\frac{dy}{dx} = \frac{y(2x^2-1)}{x(ye^y+1)}}$$</div>
+                            <p class="mt-3 text-slate-500">Nota que el resultado contiene \(e^y\), lo que es perfectamente normal. No siempre es posible eliminar \(y\) del resultado en derivación implícita.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex justify-end pt-1">
+                    <button class="mark-done-btn text-xs font-medium text-slate-400 hover:text-emerald-600 flex items-center space-x-1.5 transition-colors" data-id="6">
+                        <i class="fa-regular fa-circle-check"></i>
+                        <span>Marcar como revisado</span>
+                    </button>
+                </div>
+            </div>
+        </article>
+
+        <!-- ── Call to Action ── -->
+        <div class="fade-up bg-gradient-to-r from-indigo-600 to-violet-600 rounded-2xl p-8 text-white text-center shadow-xl shadow-indigo-200">
+            <i class="fa-solid fa-pen-to-square text-3xl mb-3 opacity-80"></i>
+            <h3 class="text-xl font-bold mb-2">¿Listo para practicar por tu cuenta?</h3>
+            <p class="text-indigo-100 mb-5 text-sm max-w-md mx-auto">Ahora que has visto los ejemplos, pon a prueba tu comprensión con ejercicios interactivos y respuestas múltiples.</p>
+            <a href="practica.html" class="inline-block bg-white text-indigo-700 font-semibold px-7 py-3 rounded-xl hover:bg-indigo-50 transition-colors shadow-md">
+                Ir al Laboratorio de Práctica →
+            </a>
         </div>
 
     </main>
 
-    <footer class="bg-white border-t border-slate-100 py-8 mt-auto">
+    <footer class="bg-white border-t border-slate-100 py-8 mt-12">
         <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-slate-500">
             <div>
                 <p>&copy; 2026 <span class="font-medium text-slate-700">ImplicitAcademia</span>. Todos los derechos reservados.</p>

@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ImplicitAcademia | Aula Virtual — Videos</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- KaTeX -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body, {
+            delimiters: [
+                {left: '$$', right: '$$', display: true},
+                {left: '\\(', right: '\\)', display: false}
+            ]
+        });"></script>
+
+    <link rel="stylesheet" href="estilo_videos.css">
+</head>
+<body class="text-slate-800 flex flex-col min-h-screen bg-slate-50">
+
+    <!-- ═══════════════════════════════
+         HEADER
+    ═══════════════════════════════ -->
+    <header class="bg-white/80 backdrop-blur-md sticky top-0 z-40 border-b border-slate-100 shadow-sm">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="index.html" class="flex items-center space-x-3">
+                <div class="bg-indigo-600 text-white w-10 h-10 rounded-xl flex items-center justify-center font-bold text-xl shadow-md shadow-indigo-200">
+                    f'
+                </div>
+                <span class="text-xl font-bold tracking-tight text-slate-900">Implicit<span class="text-indigo-600">Academia</span></span>
+            </a>
+            <button id="menu-btn" class="group flex items-center space-x-2 bg-slate-50 hover:bg-indigo-50 text-slate-600 hover:text-indigo-600 px-4 py-2.5 rounded-xl transition-all duration-300 border border-slate-100">
+                <span class="font-medium text-sm">Menú de Navegación</span>
+                <div class="flex flex-col space-y-1.5 w-5 justify-center items-end">
+                    <span class="block h-0.5 w-5 bg-current rounded transition-transform duration-300"></span>
+                    <span class="block h-0.5 w-4 bg-current rounded transition-transform duration-300"></span>
+                    <span class="block h-0.5 w-5 bg-current rounded transition-transform duration-300"></span>
+                </div>
+            </button>
+        </div>
+    </header>
+
+    <!-- ═══════════════════════════════
+         SIDEBAR OVERLAY
+    ═══════════════════════════════ -->
+    <div id="sidebar-overlay" class="fixed inset-0 bg-slate-900/30 backdrop-blur-sm z-50 opacity-0 pointer-events-none transition-opacity duration-300"></div>
+    <aside id="sidebar" class="fixed top-0 right-0 h-full w-full sm:w-80 bg-white z-50 shadow-2xl translate-x-full transition-transform duration-300 ease-out flex flex-col">
+        <div class="p-6 border-b border-slate-100 flex items-center justify-between">
+            <span class="font-semibold text-slate-500 uppercase tracking-wider text-xs">Contenido del Curso</span>
+            <button id="close-btn" class="w-8 h-8 rounded-full bg-slate-50 text-slate-500 hover:bg-rose-50 hover:text-rose-600 flex items-center justify-center transition-colors">
+                <i class="fa-solid fa-xmark text-sm"></i>
+            </button>
+        </div>
+        <nav class="flex-1 p-6 space-y-2 overflow-y-auto">
+            <a href="index.html" class="flex items-center space-x-4 px-4 py-3.5 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 font-medium transition-all group">
+                <i class="fa-solid fa-house text-lg text-slate-400 group-hover:text-indigo-500 transition-colors"></i>
+                <span>Inicio</span>
+            </a>
+            <a href="conceptos.html" class="flex items-center space-x-4 px-4 py-3.5 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 font-medium transition-all group">
+                <i class="fa-solid fa-book-open text-lg text-slate-400 group-hover:text-indigo-500 transition-colors"></i>
+                <span>Conceptos Fundamentales</span>
+            </a>
+            <a href="formulas.html" class="flex items-center space-x-4 px-4 py-3.5 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 font-medium transition-all group">
+                <i class="fa-solid fa-square-root-variable text-lg text-slate-400 group-hover:text-indigo-500 transition-colors"></i>
+                <span>Fórmulas y Usos</span>
+            </a>
+            <a href="ejemplos.html" class="flex items-center space-x-4 px-4 py-3.5 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 font-medium transition-all group">
+                <i class="fa-solid fa-chalkboard-user text-lg text-slate-400 group-hover:text-indigo-500 transition-colors"></i>
+                <span>Ejemplos Guiados</span>
+            </a>
+            <a href="practica.html" class="flex items-center space-x-4 px-4 py-3.5 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 font-medium transition-all group">
+                <i class="fa-solid fa-pen-to-square text-lg text-slate-400 group-hover:text-indigo-500 transition-colors"></i>
+                <span>Laboratorio de Práctica</span>
+            </a>
+            <a href="videos.html" class="flex items-center space-x-4 px-4 py-3.5 rounded-xl bg-indigo-50 text-indigo-600 font-medium transition-colors">
+                <i class="fa-solid fa-video text-lg"></i>
+                <span>Aula Virtual (Videos)</span>
+            </a>
+        </nav>
+        <div class="p-6 bg-slate-50 border-t border-slate-100 text-center">
+            <p class="text-xs text-slate-400">Aprende Cálculo a tu propio ritmo.</p>
+        </div>
+    </aside>
+
+    <!-- ═══════════════════════════════
+         PAGE HERO
+    ═══════════════════════════════ -->
+    <section class="hero-section relative overflow-hidden border-b border-slate-100">
+        <!-- Decorative background blobs -->
+        <div class="hero-blob hero-blob-1"></div>
+        <div class="hero-blob hero-blob-2"></div>
+
+        <div class="relative max-w-7xl mx-auto px-6 py-14 md:py-20">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-8">
+                <div class="space-y-4 max-w-2xl">
+                    <div class="flex items-center space-x-2 text-sm text-indigo-600 font-medium fade-up">
+                        <i class="fa-brands fa-youtube text-red-500 text-base"></i>
+                        <span>Aula Virtual — Canal de YouTube</span>
+                    </div>
+                    <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight fade-up" style="animation-delay:.08s">
+                        Clases en Video<br>
+                        <span class="text-gradient">Derivadas Implícitas</span>
+                    </h1>
+                    <p class="text-slate-500 leading-relaxed fade-up" style="animation-delay:.16s">
+                        Cuatro lecciones en video que cubren desde la base conceptual hasta las aplicaciones avanzadas de la derivación implícita. Mira cada video a tu ritmo, pausa, repite y consolida tu aprendizaje.
+                    </p>
+                    <!-- Quick stats row -->
+                    <div class="flex flex-wrap gap-4 pt-2 fade-up" style="animation-delay:.24s">
+                        <div class="stat-chip">
+                            <i class="fa-solid fa-film text-indigo-500"></i>
+                            <span>4 Videos</span>
+                        </div>
+                        <div class="stat-chip">
+                            <i class="fa-solid fa-layer-group text-violet-500"></i>
+                            <span>3 Niveles</span>
+                        </div>
+                        <div class="stat-chip">
+                            <i class="fa-brands fa-youtube text-red-500"></i>
+                            <span>YouTube HD</span>
+                        </div>
+                        <div class="stat-chip">
+                            <i class="fa-solid fa-infinity text-emerald-500"></i>
+                            <span>Acceso Libre</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Learning path mini-card -->
+                <div class="flex-shrink-0 fade-up" style="animation-delay:.3s">
+                    <div class="path-card">
+                        <p class="text-xs font-semibold text-indigo-600 uppercase tracking-wider mb-4 flex items-center gap-2">
+                            <i class="fa-solid fa-route"></i> Ruta de Aprendizaje
+                        </p>
+                        <ol class="space-y-3">
+                            <li class="path-step path-step--done">
+                                <span class="path-num">1</span>
+                                <div>
+                                    <p class="text-sm font-semibold text-slate-700">Introducción y Conceptos</p>
+                                    <p class="text-xs text-slate-400">¿Qué es la derivación implícita?</p>
+                                </div>
+                            </li>
+                            <li class="path-step path-step--done">
+                                <span class="path-num">2</span>
+                                <div>
+                                    <p class="text-sm font-semibold text-slate-700">Regla de la Cadena y Producto</p>
+                                    <p class="text-xs text-slate-400">Fundamentos clave para derivar</p>
+                                </div>
+                            </li>
+                            <li class="path-step path-step--done">
+                                <span class="path-num">3</span>
+                                <div>
+                                    <p class="text-sm font-semibold text-slate-700">Ejemplos Paso a Paso</p>
+                                    <p class="text-xs text-slate-400">Curvas clásicas y trigonométricas</p>
+                                </div>
+                            </li>
+                            <li class="path-step">
+                                <span class="path-num path-num--active">4</span>
+                                <div>
+                                    <p class="text-sm font-semibold text-slate-700">Aplicaciones y 2ª Derivada</p>
+                                    <p class="text-xs text-slate-400">Tangentes, normales y concavidad</p>
+                                </div>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════
+         TOPIC FILTER TABS
+    ═══════════════════════════════ -->
+    <div class="sticky top-20 z-30 bg-white/90 backdrop-blur border-b border-slate-100">
+        <div class="max-w-7xl mx-auto px-6 py-3 flex items-center space-x-2 overflow-x-auto">
+            <button class="topic-btn active flex-shrink-0 px-4 py-2 rounded-full text-sm font-medium border border-slate-200" data-topic="all">Todos</button>
+            <button class="topic-btn flex-shrink-0 px-4 py-2 rounded-full text-sm font-medium border border-slate-200 text-slate-600" data-topic="intro">Introducción</button>
+            <button class="topic-btn flex-shrink-0 px-4 py-2 rounded-full text-sm font-medium border border-slate-200 text-slate-600" data-topic="tecnica">Técnica</button>
+            <button class="topic-btn flex-shrink-0 px-4 py-2 rounded-full text-sm font-medium border border-slate-200 text-slate-600" data-topic="ejemplos">Ejemplos</button>
+            <button class="topic-btn flex-shrink-0 px-4 py-2 rounded-full text-sm font-medium border border-slate-200 text-slate-600" data-topic="aplicaciones">Aplicaciones</button>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════
+         MAIN CONTENT
+    ═══════════════════════════════ -->
+    <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 py-10 space-y-10">
+
+        <!-- ══════════════════════
+             VIDEO 1
+        ══════════════════════ -->
+        <article class="video-card fade-up" data-topic="intro">
+            <div class="video-card__header">
+                <div class="flex items-start justify-between gap-4 flex-wrap">
+                    <div class="flex items-center gap-3">
+                        <div class="vid-num-badge vid-num-badge--intro">01</div>
+                        <div>
+                            <h2 class="font-bold text-slate-900 text-lg leading-tight">Introducción a las Derivadas Implícitas</h2>
+                            <p class="text-slate-500 text-xs mt-0.5">¿Qué son? ¿Por qué las necesitamos? Conceptos base</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2 flex-wrap">
+                        <span class="level-badge level-badge--basico">Básico</span>
+                        <span class="topic-tag">Introducción</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="video-card__body">
+                <!-- VIDEO EMBED — reemplaza VIDEO_ID_1 con tu ID de YouTube -->
+                <div class="video-wrapper">
+                    <iframe
+                        class="video-frame"
+                        src="https://www.youtube.com/embed/VIDEO_ID_1"
+                        title="Introducción a las Derivadas Implícitas"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowfullscreen
+                        loading="lazy">
+                    </iframe>
+                    <!-- Placeholder visible mientras no se cargue el video -->
+                    <div class="video-placeholder" id="placeholder-1">
+                        <div class="placeholder-inner">
+                            <i class="fa-brands fa-youtube text-red-500 text-5xl mb-3"></i>
+                            <p class="text-slate-600 font-semibold">Video próximamente</p>
+                            <p class="text-slate-400 text-xs mt-1">Pega tu ID de YouTube en el código</p>
+                            <code class="mt-3 px-3 py-1.5 bg-slate-800 text-emerald-400 text-xs rounded-lg block">src="...embed/<strong>VIDEO_ID_1</strong>"</code>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sidebar info -->
+                <div class="video-info">
+                    <div class="info-section">
+                        <p class="info-label"><i class="fa-solid fa-bullseye"></i> Objetivos del video</p>
+                        <ul class="info-list">
+                            <li>Comprender la diferencia entre funciones explícitas e implícitas</li>
+                            <li>Identificar cuándo usar derivación implícita</li>
+                            <li>Aplicar la Regla de la Cadena sobre \(y\)</li>
+                            <li>Resolver ejercicios elementales: circunferencias y elipses</li>
+                        </ul>
+                    </div>
+
+                    <div class="info-section">
+                        <p class="info-label"><i class="fa-solid fa-book-open-reader"></i> Temas cubiertos</p>
+                        <div class="tag-cloud">
+                            <span class="tag">Función explícita vs. implícita</span>
+                            <span class="tag">Regla de la Cadena</span>
+                            <span class="tag">dy/dx implícita</span>
+                            <span class="tag">Circunferencia \(x^2+y^2=r^2\)</span>
+                            <span class="tag">Elipse</span>
+                        </div>
+                    </div>
+
+                    <div class="info-section">
+                        <p class="info-label"><i class="fa-solid fa-sigma"></i> Fórmula clave del video</p>
+                        <div class="formula-chip">
+                            $$\frac{d}{dx}[f(y)] = f'(y)\cdot\frac{dy}{dx}$$
+                        </div>
+                    </div>
+
+                    <a href="conceptos.html" class="nav-cta-btn">
+                        <i class="fa-solid fa-book-open"></i>
+                        Leer Conceptos Fundamentales
+                    </a>
+                </div>
+            </div>
+        </article>
+
+        <!-- ══════════════════════
+             VIDEO 2
+        ══════════════════════ -->
+        <article class="video-card fade-up" data-topic="tecnica">
+            <div class="video-card__header">
+                <div class="flex items-start justify-between gap-4 flex-wrap">
+                    <div class="flex items-center gap-3">
+                        <div class="vid-num-badge vid-num-badge--tecnica">02</div>
+                        <div>
+                            <h2 class="font-bold text-slate-900 text-lg leading-tight">Regla del Producto y Cociente en Derivación Implícita</h2>
+                            <p class="text-slate-500 text-xs mt-0.5">Combinando reglas de derivación con la técnica implícita</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2 flex-wrap">
+                        <span class="level-badge level-badge--intermedio">Intermedio</span>
+                        <span class="topic-tag">Técnica</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="video-card__body">
+                <!-- VIDEO EMBED — reemplaza VIDEO_ID_2 con tu ID de YouTube -->
+                <div class="video-wrapper">
+                    <iframe
+                        class="video-frame"
+                        src="https://www.youtube.com/embed/VIDEO_ID_2"
+                        title="Regla del Producto y Cociente en Derivación Implícita"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowfullscreen
+                        loading="lazy">
+                    </iframe>
+                    <div class="video-placeholder" id="placeholder-2">
+                        <div class="placeholder-inner">
+                            <i class="fa-brands fa-youtube text-red-500 text-5xl mb-3"></i>
+                            <p class="text-slate-600 font-semibold">Video próximamente</p>
+                            <p class="text-slate-400 text-xs mt-1">Pega tu ID de YouTube en el código</p>
+                            <code class="mt-3 px-3 py-1.5 bg-slate-800 text-emerald-400 text-xs rounded-lg block">src="...embed/<strong>VIDEO_ID_2</strong>"</code>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-info">
+                    <div class="info-section">
+                        <p class="info-label"><i class="fa-solid fa-bullseye"></i> Objetivos del video</p>
+                        <ul class="info-list">
+                            <li>Aplicar la Regla del Producto cuando la ecuación contiene \(xy\), \(x^2y\), etc.</li>
+                            <li>Usar la Regla del Cociente en expresiones implícitas</li>
+                            <li>Despejar \(\dfrac{dy}{dx}\) factorizando correctamente</li>
+                            <li>Verificar resultados mediante sustitución</li>
+                        </ul>
+                    </div>
+
+                    <div class="info-section">
+                        <p class="info-label"><i class="fa-solid fa-book-open-reader"></i> Temas cubiertos</p>
+                        <div class="tag-cloud">
+                            <span class="tag">Regla del Producto</span>
+                            <span class="tag">Regla del Cociente</span>
+                            <span class="tag">Factorización de dy/dx</span>
+                            <span class="tag">Curvas cúbicas</span>
+                            <span class="tag">Hoja de Descartes</span>
+                        </div>
+                    </div>
+
+                    <div class="info-section">
+                        <p class="info-label"><i class="fa-solid fa-sigma"></i> Fórmula clave del video</p>
+                        <div class="formula-chip">
+                            $$\frac{d}{dx}[uv] = u'v + uv' \quad \text{con } v=y$$
+                        </div>
+                    </div>
+
+                    <a href="formulas.html" class="nav-cta-btn">
+                        <i class="fa-solid fa-square-root-variable"></i>
+                        Ver Fórmulas y Usos
+                    </a>
+                </div>
+            </div>
+        </article>
+
+        <!-- ══════════════════════
+             VIDEO 3
+        ══════════════════════ -->
+        <article class="video-card fade-up" data-topic="ejemplos">
+            <div class="video-card__header">
+                <div class="flex items-start justify-between gap-4 flex-wrap">
+                    <div class="flex items-center gap-3">
+                        <div class="vid-num-badge vid-num-badge--ejemplos">03</div>
+                        <div>
+                            <h2 class="font-bold text-slate-900 text-lg leading-tight">Funciones Trigonométricas, Exponenciales y Logarítmicas</h2>
+                            <p class="text-slate-500 text-xs mt-0.5">Ejemplos completos con funciones trascendentes</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2 flex-wrap">
+                        <span class="level-badge level-badge--intermedio">Intermedio</span>
+                        <span class="topic-tag">Ejemplos</span>
+                        <span class="topic-tag topic-tag--trig">Trig</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="video-card__body">
+                <!-- VIDEO EMBED — reemplaza VIDEO_ID_3 con tu ID de YouTube -->
+                <div class="video-wrapper">
+                    <iframe
+                        class="video-frame"
+                        src="https://www.youtube.com/embed/VIDEO_ID_3"
+                        title="Funciones Trigonométricas y Exponenciales en Derivación Implícita"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowfullscreen
+                        loading="lazy">
+                    </iframe>
+                    <div class="video-placeholder" id="placeholder-3">
+                        <div class="placeholder-inner">
+                            <i class="fa-brands fa-youtube text-red-500 text-5xl mb-3"></i>
+                            <p class="text-slate-600 font-semibold">Video próximamente</p>
+                            <p class="text-slate-400 text-xs mt-1">Pega tu ID de YouTube en el código</p>
+                            <code class="mt-3 px-3 py-1.5 bg-slate-800 text-emerald-400 text-xs rounded-lg block">src="...embed/<strong>VIDEO_ID_3</strong>"</code>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-info">
+                    <div class="info-section">
+                        <p class="info-label"><i class="fa-solid fa-bullseye"></i> Objetivos del video</p>
+                        <ul class="info-list">
+                            <li>Derivar implícitamente \(\sin(y)\), \(\cos(xy)\), \(\tan(y)\)</li>
+                            <li>Aplicar la cadena sobre \(e^{xy}\) y \(e^{x+y}\)</li>
+                            <li>Diferenciar \(\ln(y)\) y \(\ln(xy)\) implícitamente</li>
+                            <li>Resolver y simplificar expresiones mezcladas</li>
+                        </ul>
+                    </div>
+
+                    <div class="info-section">
+                        <p class="info-label"><i class="fa-solid fa-book-open-reader"></i> Temas cubiertos</p>
+                        <div class="tag-cloud">
+                            <span class="tag">\(\sin(y)\), \(\cos(y)\)</span>
+                            <span class="tag">\(e^{xy}\)</span>
+                            <span class="tag">\(\ln(y)\)</span>
+                            <span class="tag">Regla del producto + trig</span>
+                            <span class="tag">Casos especiales</span>
+                        </div>
+                    </div>
+
+                    <div class="info-section">
+                        <p class="info-label"><i class="fa-solid fa-sigma"></i> Fórmulas clave del video</p>
+                        <div class="formula-chip">
+                            $$\frac{d}{dx}[\sin y]=\cos y\cdot y' \qquad \frac{d}{dx}[e^{xy}]=e^{xy}(y+xy')$$
+                        </div>
+                    </div>
+
+                    <a href="ejemplos.html" class="nav-cta-btn">
+                        <i class="fa-solid fa-chalkboard-user"></i>
+                        Ver Ejemplos Guiados
+                    </a>
+                </div>
+            </div>
+        </article>
+
+        <!-- ══════════════════════
+             VIDEO 4
+        ══════════════════════ -->
+        <article class="video-card fade-up" data-topic="aplicaciones">
+            <div class="video-card__header">
+                <div class="flex items-start justify-between gap-4 flex-wrap">
+                    <div class="flex items-center gap-3">
+                        <div class="vid-num-badge vid-num-badge--aplicaciones">04</div>
+                        <div>
+                            <h2 class="font-bold text-slate-900 text-lg leading-tight">Rectas Tangentes, Normales y Segunda Derivada Implícita</h2>
+                            <p class="text-slate-500 text-xs mt-0.5">Aplicaciones geométricas y análisis de concavidad</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2 flex-wrap">
+                        <span class="level-badge level-badge--avanzado">Avanzado</span>
+                        <span class="topic-tag">Aplicaciones</span>
+                        <span class="topic-tag topic-tag--segunda">2ª Derivada</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="video-card__body">
+                <!-- VIDEO EMBED — reemplaza VIDEO_ID_4 con tu ID de YouTube -->
+                <div class="video-wrapper">
+                    <iframe
+                        class="video-frame"
+                        src="https://www.youtube.com/embed/VIDEO_ID_4"
+                        title="Rectas Tangentes, Normales y Segunda Derivada Implícita"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowfullscreen
+                        loading="lazy">
+                    </iframe>
+                    <div class="video-placeholder" id="placeholder-4">
+                        <div class="placeholder-inner">
+                            <i class="fa-brands fa-youtube text-red-500 text-5xl mb-3"></i>
+                            <p class="text-slate-600 font-semibold">Video próximamente</p>
+                            <p class="text-slate-400 text-xs mt-1">Pega tu ID de YouTube en el código</p>
+                            <code class="mt-3 px-3 py-1.5 bg-slate-800 text-emerald-400 text-xs rounded-lg block">src="...embed/<strong>VIDEO_ID_4</strong>"</code>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="video-info">
+                    <div class="info-section">
+                        <p class="info-label"><i class="fa-solid fa-bullseye"></i> Objetivos del video</p>
+                        <ul class="info-list">
+                            <li>Hallar la ecuación de la recta tangente a una curva implícita en un punto</li>
+                            <li>Determinar la recta normal (perpendicular a la tangente)</li>
+                            <li>Calcular \(\dfrac{d^2y}{dx^2}\) usando derivación implícita sucesiva</li>
+                            <li>Interpretar la concavidad de una curva usando \(\dfrac{d^2y}{dx^2}\)</li>
+                        </ul>
+                    </div>
+
+                    <div class="info-section">
+                        <p class="info-label"><i class="fa-solid fa-book-open-reader"></i> Temas cubiertos</p>
+                        <div class="tag-cloud">
+                            <span class="tag">Recta tangente</span>
+                            <span class="tag">Recta normal</span>
+                            <span class="tag">Segunda derivada implícita</span>
+                            <span class="tag">Concavidad</span>
+                            <span class="tag">Elipse e hipérbola</span>
+                        </div>
+                    </div>
+
+                    <div class="info-section">
+                        <p class="info-label"><i class="fa-solid fa-sigma"></i> Fórmulas clave del video</p>
+                        <div class="formula-chip">
+                            $$y - y_0 = m(x - x_0) \qquad m_n = -\frac{1}{m_t}$$
+                        </div>
+                    </div>
+
+                    <a href="practica.html" class="nav-cta-btn nav-cta-btn--accent">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                        Practicar lo aprendido
+                    </a>
+                </div>
+            </div>
+        </article>
+
+        <!-- ══════════════════════
+             QUICK REFERENCE STRIP
+        ══════════════════════ -->
+        <section class="fade-up">
+            <div class="flex items-center gap-3 mb-6">
+                <div class="h-px flex-1 bg-slate-100"></div>
+                <span class="flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 text-slate-600 text-xs font-semibold uppercase tracking-wider">
+                    <i class="fa-solid fa-table-list"></i> Referencia Rápida
+                </span>
+                <div class="h-px flex-1 bg-slate-100"></div>
+            </div>
+
+            <div class="ref-grid">
+                <!-- Rule card 1 -->
+                <div class="ref-card">
+                    <div class="ref-card__icon bg-blue-50 text-blue-600"><i class="fa-solid fa-link-slash"></i></div>
+                    <h3 class="ref-card__title">Regla de la Cadena</h3>
+                    <p class="ref-card__desc">Base de toda derivación implícita. Cada vez que derivas \(y\) respecto a \(x\) multiplicas por \(\frac{dy}{dx}\).</p>
+                    <div class="ref-formula">$$\frac{d}{dx}[y^n] = ny^{n-1}\frac{dy}{dx}$$</div>
+                </div>
+                <!-- Rule card 2 -->
+                <div class="ref-card">
+                    <div class="ref-card__icon bg-violet-50 text-violet-600"><i class="fa-solid fa-xmark"></i></div>
+                    <h3 class="ref-card__title">Regla del Producto</h3>
+                    <p class="ref-card__desc">Cuando la ecuación tiene productos como \(x^2y\) o \(xy^3\), debes derivar cada factor por separado.</p>
+                    <div class="ref-formula">$$\frac{d}{dx}[uv] = u'v + uv'$$</div>
+                </div>
+                <!-- Rule card 3 -->
+                <div class="ref-card">
+                    <div class="ref-card__icon bg-emerald-50 text-emerald-600"><i class="fa-solid fa-wave-square"></i></div>
+                    <h3 class="ref-card__title">Funciones Trig</h3>
+                    <p class="ref-card__desc">La regla de la cadena se extiende naturalmente a funciones trigonométricas de \(y\).</p>
+                    <div class="ref-formula">$$\frac{d}{dx}[\sin y] = \cos y \cdot y'$$</div>
+                </div>
+                <!-- Rule card 4 -->
+                <div class="ref-card">
+                    <div class="ref-card__icon bg-fuchsia-50 text-fuchsia-600"><i class="fa-solid fa-chart-line"></i></div>
+                    <h3 class="ref-card__title">Segunda Derivada</h3>
+                    <p class="ref-card__desc">Se obtiene derivando nuevamente \(\frac{dy}{dx}\) y sustituyendo la primera derivada en el resultado.</p>
+                    <div class="ref-formula">$$\frac{d^2y}{dx^2} = \frac{d}{dx}\!\left[\frac{dy}{dx}\right]$$</div>
+                </div>
+                <!-- Rule card 5 -->
+                <div class="ref-card">
+                    <div class="ref-card__icon bg-amber-50 text-amber-600"><i class="fa-solid fa-e"></i></div>
+                    <h3 class="ref-card__title">Exponencial \(e^{f(x,y)}\)</h3>
+                    <p class="ref-card__desc">Aplica cadena al exponente, que puede requerir la regla del producto si mezcla \(x\) e \(y\).</p>
+                    <div class="ref-formula">$$\frac{d}{dx}[e^{xy}] = e^{xy}(y + xy')$$</div>
+                </div>
+                <!-- Rule card 6 -->
+                <div class="ref-card">
+                    <div class="ref-card__icon bg-sky-50 text-sky-600"><i class="fa-solid fa-ln"></i></div>
+                    <h3 class="ref-card__title">Logaritmo Natural</h3>
+                    <p class="ref-card__desc">La derivada de \(\ln(y)\) es \(\frac{1}{y}\) multiplicado por \(y'\). Muy útil en derivación logarítmica.</p>
+                    <div class="ref-formula">$$\frac{d}{dx}[\ln y] = \frac{1}{y}\cdot\frac{dy}{dx}$$</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ══════════════════════
+             TIPS BANNER
+        ══════════════════════ -->
+        <section class="fade-up">
+            <div class="tips-banner">
+                <div class="tips-banner__icon">
+                    <i class="fa-solid fa-lightbulb text-amber-400 text-2xl"></i>
+                </div>
+                <div>
+                    <h3 class="font-bold text-slate-800 mb-3">Consejos para aprovechar al máximo los videos</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+                        <div class="tip-item">
+                            <i class="fa-solid fa-pause text-indigo-500 flex-shrink-0 mt-0.5"></i>
+                            <p><strong>Pausa y calcula</strong> — antes de ver la solución, intenta resolver el ejercicio por tu cuenta.</p>
+                        </div>
+                        <div class="tip-item">
+                            <i class="fa-solid fa-pen text-violet-500 flex-shrink-0 mt-0.5"></i>
+                            <p><strong>Toma notas</strong> — escribe las fórmulas clave que aparezcan en cada video.</p>
+                        </div>
+                        <div class="tip-item">
+                            <i class="fa-solid fa-rotate-right text-emerald-500 flex-shrink-0 mt-0.5"></i>
+                            <p><strong>Repite el video</strong> — ver un mismo ejemplo varias veces solidifica el patrón.</p>
+                        </div>
+                        <div class="tip-item">
+                            <i class="fa-solid fa-list-check text-fuchsia-500 flex-shrink-0 mt-0.5"></i>
+                            <p><strong>Practica después</strong> — usa el Laboratorio de Práctica para reforzar cada tema.</p>
+                        </div>
+                        <div class="tip-item">
+                            <i class="fa-solid fa-route text-sky-500 flex-shrink-0 mt-0.5"></i>
+                            <p><strong>Sigue la ruta</strong> — mira los videos en orden para construir el conocimiento de forma progresiva.</p>
+                        </div>
+                        <div class="tip-item">
+                            <i class="fa-solid fa-book text-amber-500 flex-shrink-0 mt-0.5"></i>
+                            <p><strong>Complementa</strong> — combina cada video con la sección de Ejemplos Guiados y Fórmulas.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ══════════════════════
+             BOTTOM CTA
+        ══════════════════════ -->
+        <div class="fade-up bg-gradient-to-r from-indigo-600 to-violet-600 rounded-2xl p-8 text-white text-center shadow-xl shadow-indigo-200">
+            <i class="fa-solid fa-graduation-cap text-3xl mb-3 opacity-80"></i>
+            <h3 class="text-xl font-bold mb-2">¿Listo para poner a prueba lo aprendido?</h3>
+            <p class="text-indigo-100 mb-5 text-sm max-w-lg mx-auto">
+                Después de ver los videos, ve al Laboratorio de Práctica y responde las 12 preguntas para medir tu nivel.
+            </p>
+            <a href="practica.html" class="inline-block bg-white text-indigo-700 font-semibold px-7 py-3 rounded-xl hover:bg-indigo-50 transition-colors shadow-md mr-3">
+                <i class="fa-solid fa-pen-to-square mr-1.5"></i> Ir al Laboratorio
+            </a>
+            <a href="ejemplos.html" class="inline-block bg-indigo-500/40 text-white font-semibold px-7 py-3 rounded-xl hover:bg-indigo-500/60 transition-colors">
+                Ver Ejemplos →
+            </a>
+        </div>
+
+    </main>
+
+    <!-- ═══════════════════════════════
+         FOOTER
+    ═══════════════════════════════ -->
+    <footer class="bg-white border-t border-slate-100 py-8 mt-12">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-slate-500">
+            <div>
+                <p>&copy; 2026 <span class="font-medium text-slate-700">ImplicitAcademia</span>. Todos los derechos reservados.</p>
+            </div>
+            <div class="flex items-center space-x-2 bg-slate-50 px-4 py-2 rounded-xl border border-slate-100">
+                <span class="text-xs text-slate-400">Diseñado y Desarrollado por:</span>
+                <span class="font-semibold text-slate-700 tracking-tight">José Daniel Real García | 9941-25-837</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="funciones_videos.js" defer></script>
+</body>
+</html>

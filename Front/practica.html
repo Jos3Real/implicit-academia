@@ -1,0 +1,1169 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ImplicitAcademia | Laboratorio de Práctica</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- KaTeX -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body, {
+            delimiters: [
+                {left: '$$', right: '$$', display: true},
+                {left: '\\(', right: '\\)', display: false}
+            ]
+        });"></script>
+
+    <link rel="stylesheet" href="estilo_practica.css">
+
+</head>
+<body class="text-slate-800 flex flex-col min-h-screen bg-slate-50">
+
+    <!-- ═══════════════════════════════
+         HEADER
+    ═══════════════════════════════ -->
+    <header class="bg-white/80 backdrop-blur-md sticky top-0 z-40 border-b border-slate-100 shadow-sm">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="index.html" class="flex items-center space-x-3">
+                <div class="bg-indigo-600 text-white w-10 h-10 rounded-xl flex items-center justify-center font-bold text-xl shadow-md shadow-indigo-200">
+                    f'
+                </div>
+                <span class="text-xl font-bold tracking-tight text-slate-900">Implicit<span class="text-indigo-600">Academia</span></span>
+            </a>
+            <button id="menu-btn" class="group flex items-center space-x-2 bg-slate-50 hover:bg-indigo-50 text-slate-600 hover:text-indigo-600 px-4 py-2.5 rounded-xl transition-all duration-300 border border-slate-100">
+                <span class="font-medium text-sm">Menú de Navegación</span>
+                <div class="flex flex-col space-y-1.5 w-5 justify-center items-end">
+                    <span class="block h-0.5 w-5 bg-current rounded transition-transform duration-300"></span>
+                    <span class="block h-0.5 w-4 bg-current rounded transition-transform duration-300"></span>
+                    <span class="block h-0.5 w-5 bg-current rounded transition-transform duration-300"></span>
+                </div>
+            </button>
+        </div>
+    </header>
+
+    <!-- ═══════════════════════════════
+         SIDEBAR OVERLAY
+    ═══════════════════════════════ -->
+    <div id="sidebar-overlay" class="fixed inset-0 bg-slate-900/30 backdrop-blur-sm z-50 opacity-0 pointer-events-none transition-opacity duration-300"></div>
+    <aside id="sidebar" class="fixed top-0 right-0 h-full w-full sm:w-80 bg-white z-50 shadow-2xl translate-x-full transition-transform duration-300 ease-out flex flex-col">
+        <div class="p-6 border-b border-slate-100 flex items-center justify-between">
+            <span class="font-semibold text-slate-500 uppercase tracking-wider text-xs">Contenido del Curso</span>
+            <button id="close-btn" class="w-8 h-8 rounded-full bg-slate-50 text-slate-500 hover:bg-rose-50 hover:text-rose-600 flex items-center justify-center transition-colors">
+                <i class="fa-solid fa-xmark text-sm"></i>
+            </button>
+        </div>
+        <nav class="flex-1 p-6 space-y-2 overflow-y-auto">
+            <a href="index.html" class="flex items-center space-x-4 px-4 py-3.5 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 font-medium transition-all group">
+                <i class="fa-solid fa-house text-lg text-slate-400 group-hover:text-indigo-500 transition-colors"></i>
+                <span>Inicio</span>
+            </a>
+            <a href="conceptos.html" class="flex items-center space-x-4 px-4 py-3.5 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 font-medium transition-all group">
+                <i class="fa-solid fa-book-open text-lg text-slate-400 group-hover:text-indigo-500 transition-colors"></i>
+                <span>Conceptos Fundamentales</span>
+            </a>
+            <a href="formulas.html" class="flex items-center space-x-4 px-4 py-3.5 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 font-medium transition-all group">
+                <i class="fa-solid fa-square-root-variable text-lg text-slate-400 group-hover:text-indigo-500 transition-colors"></i>
+                <span>Fórmulas y Usos</span>
+            </a>
+            <a href="ejemplos.html" class="flex items-center space-x-4 px-4 py-3.5 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 font-medium transition-all group">
+                <i class="fa-solid fa-chalkboard-user text-lg text-slate-400 group-hover:text-indigo-500 transition-colors"></i>
+                <span>Ejemplos Guiados</span>
+            </a>
+            <a href="practica.html" class="flex items-center space-x-4 px-4 py-3.5 rounded-xl bg-indigo-50 text-indigo-600 font-medium transition-colors">
+                <i class="fa-solid fa-pen-to-square text-lg"></i>
+                <span>Laboratorio de Práctica</span>
+            </a>
+            <a href="videos.html" class="flex items-center space-x-4 px-4 py-3.5 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-slate-900 font-medium transition-all group">
+                <i class="fa-solid fa-video text-lg text-slate-400 group-hover:text-indigo-500 transition-colors"></i>
+                <span>Aula Virtual (Videos)</span>
+            </a>
+        </nav>
+        <div class="p-6 bg-slate-50 border-t border-slate-100 text-center">
+            <p class="text-xs text-slate-400">Aprende Cálculo a tu propio ritmo.</p>
+        </div>
+    </aside>
+
+    <!-- ═══════════════════════════════
+         PAGE HERO
+    ═══════════════════════════════ -->
+    <section class="bg-white border-b border-slate-100">
+        <div class="max-w-7xl mx-auto px-6 py-12 md:py-16">
+            <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+                <div class="space-y-3">
+                    <div class="flex items-center space-x-2 text-sm text-indigo-600 font-medium">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                        <span>Laboratorio de Práctica</span>
+                    </div>
+                    <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+                        Pon a prueba tu conocimiento
+                    </h1>
+                    <p class="text-slate-500 max-w-2xl leading-relaxed">
+                        Selecciona la respuesta correcta para cada ejercicio. Si aciertas, verás el procedimiento completo paso a paso. Si fallas, podrás intentarlo de nuevo o revelar la solución.
+                    </p>
+                </div>
+                <!-- Score widget -->
+                <div class="flex-shrink-0 bg-slate-50 rounded-2xl border border-slate-100 p-5 w-full md:w-64 space-y-4">
+                    <div>
+                        <p class="text-xs text-slate-400 font-medium uppercase tracking-wider mb-1">Puntuación</p>
+                        <div class="flex items-end gap-2">
+                            <p class="text-3xl font-bold text-slate-800" id="score-display">0</p>
+                            <p class="text-slate-400 text-sm mb-1">/ <span id="total-display">12</span> correctas</p>
+                        </div>
+                        <div class="h-2 bg-slate-200 rounded-full overflow-hidden mt-2">
+                            <div class="progress-fill" id="score-bar" style="width:0%"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="text-xs text-slate-400 font-medium uppercase tracking-wider mb-2">Racha actual</p>
+                        <div class="flex gap-1.5" id="streak-dots">
+                            <div class="streak-dot"></div>
+                            <div class="streak-dot"></div>
+                            <div class="streak-dot"></div>
+                            <div class="streak-dot"></div>
+                            <div class="streak-dot"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════
+         CATEGORY FILTER
+    ═══════════════════════════════ -->
+    <div class="sticky top-20 z-30 bg-white/90 backdrop-blur border-b border-slate-100">
+        <div class="max-w-7xl mx-auto px-6 py-3 flex items-center space-x-2 overflow-x-auto">
+            <button class="cat-btn active flex-shrink-0 px-4 py-2 rounded-full text-sm font-medium border border-slate-200" data-cat="all">Todos</button>
+            <button class="cat-btn flex-shrink-0 px-4 py-2 rounded-full text-sm font-medium border border-slate-200 text-slate-600" data-cat="basico">Básico</button>
+            <button class="cat-btn flex-shrink-0 px-4 py-2 rounded-full text-sm font-medium border border-slate-200 text-slate-600" data-cat="intermedio">Intermedio</button>
+            <button class="cat-btn flex-shrink-0 px-4 py-2 rounded-full text-sm font-medium border border-slate-200 text-slate-600" data-cat="avanzado">Avanzado</button>
+            <button class="cat-btn flex-shrink-0 px-4 py-2 rounded-full text-sm font-medium border border-slate-200 text-slate-600" data-cat="trig">Trigonométricas</button>
+            <button class="cat-btn flex-shrink-0 px-4 py-2 rounded-full text-sm font-medium border border-slate-200 text-slate-600" data-cat="segunda">2ª Derivada</button>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════
+         MAIN CONTENT
+    ═══════════════════════════════ -->
+    <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 py-10 space-y-8">
+
+        <!-- ══════════════════════════
+             SECCIÓN: BÁSICO
+        ══════════════════════════ -->
+        <div class="fade-up">
+            <div class="flex items-center gap-3 mb-5">
+                <div class="h-px flex-1 bg-slate-100"></div>
+                <span class="flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 text-blue-700 text-xs font-semibold uppercase tracking-wider">
+                    <i class="fa-solid fa-seedling"></i> Nivel Básico
+                </span>
+                <div class="h-px flex-1 bg-slate-100"></div>
+            </div>
+        </div>
+
+        <!-- ────────────────────────
+             Q1
+        ──────────────────────── -->
+        <article class="quiz-card bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden fade-up" data-cat="basico" data-qid="1">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between p-6 pb-4 gap-3">
+                <div class="flex items-center space-x-3">
+                    <div class="bg-indigo-600 text-white w-9 h-9 rounded-xl flex items-center justify-center font-bold text-sm shadow shadow-indigo-200 flex-shrink-0">01</div>
+                    <div>
+                        <h2 class="font-bold text-slate-900 text-base">Derivada de una Circunferencia</h2>
+                        <p class="text-slate-500 text-xs mt-0.5">Derivación implícita directa</p>
+                    </div>
+                </div>
+                <span class="badge-basico self-start sm:self-auto px-3 py-1 rounded-full text-xs font-semibold">Básico</span>
+            </div>
+
+            <div class="px-6 pb-2">
+                <p class="text-slate-700 text-sm mb-3 font-medium">Dada la ecuación implícita, ¿cuál es el valor de \(\dfrac{dy}{dx}\)?</p>
+                <div class="math-block text-center">$$x^2 + y^2 = 49$$</div>
+            </div>
+
+            <div class="px-6 pb-2 mt-4 space-y-2" data-correct="B">
+                <button class="option-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-sm text-slate-700" data-opt="A">
+                    <span class="w-7 h-7 rounded-lg bg-white border border-slate-200 flex items-center justify-center text-xs font-bold text-slate-500 flex-shrink-0">A</span>
+                    <span>\(\dfrac{dy}{dx} = \dfrac{x}{y}\)</span>
+                </button>
+                <button class="option-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-sm text-slate-700" data-opt="B">
+                    <span class="w-7 h-7 rounded-lg bg-white border border-slate-200 flex items-center justify-center text-xs font-bold text-slate-500 flex-shrink-0">B</span>
+                    <span>\(\dfrac{dy}{dx} = -\dfrac{x}{y}\)</span>
+                </button>
+                <button class="option-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-sm text-slate-700" data-opt="C">
+                    <span class="w-7 h-7 rounded-lg bg-white border border-slate-200 flex items-center justify-center text-xs font-bold text-slate-500 flex-shrink-0">C</span>
+                    <span>\(\dfrac{dy}{dx} = -\dfrac{y}{x}\)</span>
+                </button>
+                <button class="option-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-sm text-slate-700" data-opt="D">
+                    <span class="w-7 h-7 rounded-lg bg-white border border-slate-200 flex items-center justify-center text-xs font-bold text-slate-500 flex-shrink-0">D</span>
+                    <span>\(\dfrac{dy}{dx} = 2x + 2y\)</span>
+                </button>
+            </div>
+
+            <!-- Feedback + solution -->
+            <div class="px-6 pb-2 mt-2">
+                <div class="feedback-msg hidden"></div>
+                <div class="solution-panel mt-3" id="sol-1">
+                    <div class="bg-slate-50 rounded-xl border border-slate-100 p-4 space-y-3">
+                        <p class="text-xs font-semibold text-indigo-600 uppercase tracking-wider flex items-center gap-2"><i class="fa-solid fa-list-check"></i> Procedimiento Completo</p>
+                        <div class="space-y-3">
+                            <div class="sol-step">
+                                <div class="sol-step-num">1</div>
+                                <div class="text-sm text-slate-600 space-y-1">
+                                    <p>Derivamos ambos lados respecto a \(x\), aplicando la Regla de la Cadena en \(y^2\):</p>
+                                    <div class="math-block">$$2x + 2y\,\frac{dy}{dx} = 0$$</div>
+                                </div>
+                            </div>
+                            <div class="sol-step">
+                                <div class="sol-step-num">2</div>
+                                <div class="text-sm text-slate-600 space-y-1">
+                                    <p>Despejamos \(\dfrac{dy}{dx}\): restamos \(2x\) y dividimos entre \(2y\):</p>
+                                    <div class="math-block">$$\frac{dy}{dx} = \frac{-2x}{2y}$$</div>
+                                </div>
+                            </div>
+                            <div class="sol-step">
+                                <div class="sol-step-num">3</div>
+                                <div class="text-sm text-slate-600">
+                                    <p>Simplificamos el factor 2:</p>
+                                    <div class="result-box mt-2">$$\boxed{\frac{dy}{dx} = -\frac{x}{y}}$$</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="px-6 pb-5 pt-2 flex justify-end">
+                <button class="retry-btn hidden text-xs font-medium text-indigo-500 hover:text-indigo-700 flex items-center gap-1.5 transition-colors">
+                    <i class="fa-solid fa-rotate-left"></i> Intentar de nuevo
+                </button>
+            </div>
+        </article>
+
+        <!-- ────────────────────────
+             Q2
+        ──────────────────────── -->
+        <article class="quiz-card bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden fade-up" data-cat="basico" data-qid="2">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between p-6 pb-4 gap-3">
+                <div class="flex items-center space-x-3">
+                    <div class="bg-indigo-600 text-white w-9 h-9 rounded-xl flex items-center justify-center font-bold text-sm shadow shadow-indigo-200 flex-shrink-0">02</div>
+                    <div>
+                        <h2 class="font-bold text-slate-900 text-base">Ecuación Lineal Implícita</h2>
+                        <p class="text-slate-500 text-xs mt-0.5">Combinación de potencias de primer grado</p>
+                    </div>
+                </div>
+                <span class="badge-basico self-start sm:self-auto px-3 py-1 rounded-full text-xs font-semibold">Básico</span>
+            </div>
+
+            <div class="px-6 pb-2">
+                <p class="text-slate-700 text-sm mb-3 font-medium">Para la ecuación implícita siguiente, ¿cuál es \(\dfrac{dy}{dx}\)?</p>
+                <div class="math-block text-center">$$3x + 5y = 10$$</div>
+            </div>
+
+            <div class="px-6 pb-2 mt-4 space-y-2" data-correct="C">
+                <button class="option-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-sm text-slate-700" data-opt="A">
+                    <span class="w-7 h-7 rounded-lg bg-white border border-slate-200 flex items-center justify-center text-xs font-bold text-slate-500 flex-shrink-0">A</span>
+                    <span>\(\dfrac{dy}{dx} = \dfrac{3}{5}\)</span>
+                </button>
+                <button class="option-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-sm text-slate-700" data-opt="B">
+                    <span class="w-7 h-7 rounded-lg bg-white border border-slate-200 flex items-center justify-center text-xs font-bold text-slate-500 flex-shrink-0">B</span>
+                    <span>\(\dfrac{dy}{dx} = \dfrac{5}{3}\)</span>
+                </button>
+                <button class="option-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-sm text-slate-700" data-opt="C">
+                    <span class="w-7 h-7 rounded-lg bg-white border border-slate-200 flex items-center justify-center text-xs font-bold text-slate-500 flex-shrink-0">C</span>
+                    <span>\(\dfrac{dy}{dx} = -\dfrac{3}{5}\)</span>
+                </button>
+                <button class="option-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-sm text-slate-700" data-opt="D">
+                    <span class="w-7 h-7 rounded-lg bg-white border border-slate-200 flex items-center justify-center text-xs font-bold text-slate-500 flex-shrink-0">D</span>
+                    <span>\(\dfrac{dy}{dx} = 3\)</span>
+                </button>
+            </div>
+
+            <div class="px-6 pb-2 mt-2">
+                <div class="feedback-msg hidden"></div>
+                <div class="solution-panel mt-3" id="sol-2">
+                    <div class="bg-slate-50 rounded-xl border border-slate-100 p-4 space-y-3">
+                        <p class="text-xs font-semibold text-indigo-600 uppercase tracking-wider flex items-center gap-2"><i class="fa-solid fa-list-check"></i> Procedimiento Completo</p>
+                        <div class="space-y-3">
+                            <div class="sol-step">
+                                <div class="sol-step-num">1</div>
+                                <div class="text-sm text-slate-600 space-y-1">
+                                    <p>Derivamos ambos lados respecto a \(x\). La constante 10 tiene derivada 0:</p>
+                                    <div class="math-block">$$3 + 5\,\frac{dy}{dx} = 0$$</div>
+                                </div>
+                            </div>
+                            <div class="sol-step">
+                                <div class="sol-step-num">2</div>
+                                <div class="text-sm text-slate-600 space-y-1">
+                                    <p>Despejamos \(\dfrac{dy}{dx}\):</p>
+                                    <div class="math-block">$$5\,\frac{dy}{dx} = -3$$</div>
+                                </div>
+                            </div>
+                            <div class="sol-step">
+                                <div class="sol-step-num">3</div>
+                                <div class="text-sm text-slate-600">
+                                    <div class="result-box mt-1">$$\boxed{\frac{dy}{dx} = -\frac{3}{5}}$$</div>
+                                    <p class="mt-2 text-slate-500 text-xs">Nota: este resultado coincide con la pendiente que obtendríamos despejando \(y\) explícitamente.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="px-6 pb-5 pt-2 flex justify-end">
+                <button class="retry-btn hidden text-xs font-medium text-indigo-500 hover:text-indigo-700 flex items-center gap-1.5 transition-colors">
+                    <i class="fa-solid fa-rotate-left"></i> Intentar de nuevo
+                </button>
+            </div>
+        </article>
+
+        <!-- ────────────────────────
+             Q3
+        ──────────────────────── -->
+        <article class="quiz-card bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden fade-up" data-cat="basico" data-qid="3">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between p-6 pb-4 gap-3">
+                <div class="flex items-center space-x-3">
+                    <div class="bg-indigo-600 text-white w-9 h-9 rounded-xl flex items-center justify-center font-bold text-sm shadow shadow-indigo-200 flex-shrink-0">03</div>
+                    <div>
+                        <h2 class="font-bold text-slate-900 text-base">Potencia de \(y\)</h2>
+                        <p class="text-slate-500 text-xs mt-0.5">Regla de la cadena en potencias de y</p>
+                    </div>
+                </div>
+                <span class="badge-basico self-start sm:self-auto px-3 py-1 rounded-full text-xs font-semibold">Básico</span>
+            </div>
+
+            <div class="px-6 pb-2">
+                <p class="text-slate-700 text-sm mb-3 font-medium">¿Cuál es \(\dfrac{dy}{dx}\) para la curva?</p>
+                <div class="math-block text-center">$$x^2 - y^3 = 8$$</div>
+            </div>
+
+            <div class="px-6 pb-2 mt-4 space-y-2" data-correct="A">
+                <button class="option-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-sm text-slate-700" data-opt="A">
+                    <span class="w-7 h-7 rounded-lg bg-white border border-slate-200 flex items-center justify-center text-xs font-bold text-slate-500 flex-shrink-0">A</span>
+                    <span>\(\dfrac{dy}{dx} = \dfrac{2x}{3y^2}\)</span>
+                </button>
+                <button class="option-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-sm text-slate-700" data-opt="B">
+                    <span class="w-7 h-7 rounded-lg bg-white border border-slate-200 flex items-center justify-center text-xs font-bold text-slate-500 flex-shrink-0">B</span>
+                    <span>\(\dfrac{dy}{dx} = -\dfrac{2x}{3y^2}\)</span>
+                </button>
+                <button class="option-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-sm text-slate-700" data-opt="C">
+                    <span class="w-7 h-7 rounded-lg bg-white border border-slate-200 flex items-center justify-center text-xs font-bold text-slate-500 flex-shrink-0">C</span>
+                    <span>\(\dfrac{dy}{dx} = \dfrac{3y^2}{2x}\)</span>
+                </button>
+                <button class="option-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-sm text-slate-700" data-opt="D">
+                    <span class="w-7 h-7 rounded-lg bg-white border border-slate-200 flex items-center justify-center text-xs font-bold text-slate-500 flex-shrink-0">D</span>
+                    <span>\(\dfrac{dy}{dx} = 2x - 3y^2\)</span>
+                </button>
+            </div>
+
+            <div class="px-6 pb-2 mt-2">
+                <div class="feedback-msg hidden"></div>
+                <div class="solution-panel mt-3" id="sol-3">
+                    <div class="bg-slate-50 rounded-xl border border-slate-100 p-4 space-y-3">
+                        <p class="text-xs font-semibold text-indigo-600 uppercase tracking-wider flex items-center gap-2"><i class="fa-solid fa-list-check"></i> Procedimiento Completo</p>
+                        <div class="space-y-3">
+                            <div class="sol-step">
+                                <div class="sol-step-num">1</div>
+                                <div class="text-sm text-slate-600 space-y-1">
+                                    <p>Derivamos implícitamente. Atención: al derivar \(-y^3\) aplicamos la regla de la cadena y el signo negativo:</p>
+                                    <div class="math-block">$$2x - 3y^2\,\frac{dy}{dx} = 0$$</div>
+                                </div>
+                            </div>
+                            <div class="sol-step">
+                                <div class="sol-step-num">2</div>
+                                <div class="text-sm text-slate-600 space-y-1">
+                                    <p>Despejamos \(\dfrac{dy}{dx}\), pasando \(-3y^2\dfrac{dy}{dx}\) al otro lado:</p>
+                                    <div class="math-block">$$3y^2\,\frac{dy}{dx} = 2x$$</div>
+                                </div>
+                            </div>
+                            <div class="sol-step">
+                                <div class="sol-step-num">3</div>
+                                <div class="text-sm text-slate-600">
+                                    <div class="result-box mt-1">$$\boxed{\frac{dy}{dx} = \frac{2x}{3y^2}}$$</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="px-6 pb-5 pt-2 flex justify-end">
+                <button class="retry-btn hidden text-xs font-medium text-indigo-500 hover:text-indigo-700 flex items-center gap-1.5 transition-colors">
+                    <i class="fa-solid fa-rotate-left"></i> Intentar de nuevo
+                </button>
+            </div>
+        </article>
+
+        <!-- ══════════════════════════
+             SECCIÓN: INTERMEDIO
+        ══════════════════════════ -->
+        <div class="fade-up">
+            <div class="flex items-center gap-3 mb-5 mt-4">
+                <div class="h-px flex-1 bg-slate-100"></div>
+                <span class="flex items-center gap-2 px-3 py-1 rounded-full bg-violet-50 text-violet-700 text-xs font-semibold uppercase tracking-wider">
+                    <i class="fa-solid fa-fire-flame-simple"></i> Nivel Intermedio
+                </span>
+                <div class="h-px flex-1 bg-slate-100"></div>
+            </div>
+        </div>
+
+        <!-- ────────────────────────
+             Q4
+        ──────────────────────── -->
+        <article class="quiz-card bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden fade-up" data-cat="intermedio" data-qid="4">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between p-6 pb-4 gap-3">
+                <div class="flex items-center space-x-3">
+                    <div class="bg-violet-600 text-white w-9 h-9 rounded-xl flex items-center justify-center font-bold text-sm shadow shadow-violet-200 flex-shrink-0">04</div>
+                    <div>
+                        <h2 class="font-bold text-slate-900 text-base">Regla del Producto Implícita</h2>
+                        <p class="text-slate-500 text-xs mt-0.5">Producto de \(x\) e \(y\) en la ecuación</p>
+                    </div>
+                </div>
+                <span class="badge-intermedio self-start sm:self-auto px-3 py-1 rounded-full text-xs font-semibold">Intermedio</span>
+            </div>
+
+            <div class="px-6 pb-2">
+                <p class="text-slate-700 text-sm mb-3 font-medium">Dada la curva, ¿cuál es el valor de \(\dfrac{dy}{dx}\)?</p>
+                <div class="math-block text-center">$$x^2 y + y^3 = 5$$</div>
+            </div>
+
+            <div class="px-6 pb-2 mt-4 space-y-2" data-correct="D">
+                <button class="option-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-sm text-slate-700" data-opt="A">
+                    <span class="w-7 h-7 rounded-lg bg-white border border-slate-200 flex items-center justify-center text-xs font-bold text-slate-500 flex-shrink-0">A</span>
+                    <span>\(\dfrac{dy}{dx} = \dfrac{2xy}{x^2 + 3y^2}\)</span>
+                </button>
+                <button class="option-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-sm text-slate-700" data-opt="B">
+                    <span class="w-7 h-7 rounded-lg bg-white border border-slate-200 flex items-center justify-center text-xs font-bold text-slate-500 flex-shrink-0">B</span>
+                    <span>\(\dfrac{dy}{dx} = \dfrac{x^2 + 3y^2}{2xy}\)</span>
+                </button>
+                <button class="option-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-sm text-slate-700" data-opt="C">
+                    <span class="w-7 h-7 rounded-lg bg-white border border-slate-200 flex items-center justify-center text-xs font-bold text-slate-500 flex-shrink-0">C</span>
+                    <span>\(\dfrac{dy}{dx} = -\dfrac{x^2}{3y^2}\)</span>
+                </button>
+                <button class="option-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-sm text-slate-700" data-opt="D">
+                    <span class="w-7 h-7 rounded-lg bg-white border border-slate-200 flex items-center justify-center text-xs font-bold text-slate-500 flex-shrink-0">D</span>
+                    <span>\(\dfrac{dy}{dx} = -\dfrac{2xy}{x^2 + 3y^2}\)</span>
+                </button>
+            </div>
+
+            <div class="px-6 pb-2 mt-2">
+                <div class="feedback-msg hidden"></div>
+                <div class="solution-panel mt-3" id="sol-4">
+                    <div class="bg-slate-50 rounded-xl border border-slate-100 p-4 space-y-3">
+                        <p class="text-xs font-semibold text-indigo-600 uppercase tracking-wider flex items-center gap-2"><i class="fa-solid fa-list-check"></i> Procedimiento Completo</p>
+                        <div class="space-y-3">
+                            <div class="sol-step">
+                                <div class="sol-step-num">1</div>
+                                <div class="text-sm text-slate-600 space-y-1">
+                                    <p>Derivamos \(x^2 y\) con la <strong>Regla del Producto</strong> (\(u=x^2,\; v=y\)):</p>
+                                    <div class="math-block">$$\frac{d}{dx}(x^2 y) = 2xy + x^2\frac{dy}{dx}$$</div>
+                                    <p class="mt-1">Derivamos \(y^3\) con la Regla de la Cadena:</p>
+                                    <div class="math-block">$$\frac{d}{dx}(y^3) = 3y^2\frac{dy}{dx}$$</div>
+                                </div>
+                            </div>
+                            <div class="sol-step">
+                                <div class="sol-step-num">2</div>
+                                <div class="text-sm text-slate-600 space-y-1">
+                                    <p>La ecuación derivada completa (la derivada de 5 es 0):</p>
+                                    <div class="math-block">$$2xy + x^2\frac{dy}{dx} + 3y^2\frac{dy}{dx} = 0$$</div>
+                                </div>
+                            </div>
+                            <div class="sol-step">
+                                <div class="sol-step-num">3</div>
+                                <div class="text-sm text-slate-600 space-y-1">
+                                    <p>Factorizamos \(\dfrac{dy}{dx}\) y despejamos:</p>
+                                    <div class="math-block">$$\frac{dy}{dx}(x^2 + 3y^2) = -2xy$$</div>
+                                    <div class="result-box mt-2">$$\boxed{\frac{dy}{dx} = -\frac{2xy}{x^2 + 3y^2}}$$</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="px-6 pb-5 pt-2 flex justify-end">
+                <button class="retry-btn hidden text-xs font-medium text-indigo-500 hover:text-indigo-700 flex items-center gap-1.5 transition-colors">
+                    <i class="fa-solid fa-rotate-left"></i> Intentar de nuevo
+                </button>
+            </div>
+        </article>
+
+        <!-- ────────────────────────
+             Q5 — TRIG
+        ──────────────────────── -->
+        <article class="quiz-card bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden fade-up" data-cat="trig" data-qid="5">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between p-6 pb-4 gap-3">
+                <div class="flex items-center space-x-3">
+                    <div class="bg-violet-600 text-white w-9 h-9 rounded-xl flex items-center justify-center font-bold text-sm shadow shadow-violet-200 flex-shrink-0">05</div>
+                    <div>
+                        <h2 class="font-bold text-slate-900 text-base">Función Trigonométrica — \(\cos(y)\)</h2>
+                        <p class="text-slate-500 text-xs mt-0.5">Cadena aplicada a coseno de y</p>
+                    </div>
+                </div>
+                <div class="flex gap-2">
+                    <span class="badge-intermedio self-start sm:self-auto px-3 py-1 rounded-full text-xs font-semibold">Intermedio</span>
+                    <span class="bg-sky-50 text-sky-700 self-start sm:self-auto px-3 py-1 rounded-full text-xs font-semibold">Trig</span>
+                </div>
+            </div>
+
+            <div class="px-6 pb-2">
+                <p class="text-slate-700 text-sm mb-3 font-medium">¿Cuál es \(\dfrac{dy}{dx}\) para la siguiente curva implícita?</p>
+                <div class="math-block text-center">$$x + \cos(y) = x^3$$</div>
+            </div>
+
+            <div class="px-6 pb-2 mt-4 space-y-2" data-correct="B">
+                <button class="option-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-sm text-slate-700" data-opt="A">
+                    <span class="w-7 h-7 rounded-lg bg-white border border-slate-200 flex items-center justify-center text-xs font-bold text-slate-500 flex-shrink-0">A</span>
+                    <span>\(\dfrac{dy}{dx} = \dfrac{3x^2 - 1}{\sin(y)}\)</span>
+                </button>
+                <button class="option-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-sm text-slate-700" data-opt="B">
+                    <span class="w-7 h-7 rounded-lg bg-white border border-slate-200 flex items-center justify-center text-xs font-bold text-slate-500 flex-shrink-0">B</span>
+                    <span>\(\dfrac{dy}{dx} = -\dfrac{3x^2 - 1}{\sin(y)}\)</span>
+                </button>
+                <button class="option-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-sm text-slate-700" data-opt="C">
+                    <span class="w-7 h-7 rounded-lg bg-white border border-slate-200 flex items-center justify-center text-xs font-bold text-slate-500 flex-shrink-0">C</span>
+                    <span>\(\dfrac{dy}{dx} = \dfrac{1}{\sin(y)}\)</span>
+                </button>
+                <button class="option-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-sm text-slate-700" data-opt="D">
+                    <span class="w-7 h-7 rounded-lg bg-white border border-slate-200 flex items-center justify-center text-xs font-bold text-slate-500 flex-shrink-0">D</span>
+                    <span>\(\dfrac{dy}{dx} = 3x^2 + \sin(y)\)</span>
+                </button>
+            </div>
+
+            <div class="px-6 pb-2 mt-2">
+                <div class="feedback-msg hidden"></div>
+                <div class="solution-panel mt-3" id="sol-5">
+                    <div class="bg-slate-50 rounded-xl border border-slate-100 p-4 space-y-3">
+                        <p class="text-xs font-semibold text-indigo-600 uppercase tracking-wider flex items-center gap-2"><i class="fa-solid fa-list-check"></i> Procedimiento Completo</p>
+                        <div class="space-y-3">
+                            <div class="sol-step">
+                                <div class="sol-step-num">1</div>
+                                <div class="text-sm text-slate-600 space-y-1">
+                                    <p>Derivamos cada término. Para \(\cos(y)\) la derivada es \(-\sin(y)\cdot\dfrac{dy}{dx}\) por la regla de la cadena:</p>
+                                    <div class="math-block">$$1 - \sin(y)\,\frac{dy}{dx} = 3x^2$$</div>
+                                </div>
+                            </div>
+                            <div class="sol-step">
+                                <div class="sol-step-num">2</div>
+                                <div class="text-sm text-slate-600 space-y-1">
+                                    <p>Pasamos el 1 al lado derecho y despejamos:</p>
+                                    <div class="math-block">$$-\sin(y)\,\frac{dy}{dx} = 3x^2 - 1$$</div>
+                                </div>
+                            </div>
+                            <div class="sol-step">
+                                <div class="sol-step-num">3</div>
+                                <div class="text-sm text-slate-600">
+                                    <div class="result-box mt-1">$$\boxed{\frac{dy}{dx} = -\frac{3x^2 - 1}{\sin(y)}}$$</div>
+                                    <p class="mt-2 text-xs text-slate-500">⚠️ El resultado no está definido cuando \(\sin(y)=0\), es decir en \(y = k\pi\).</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="px-6 pb-5 pt-2 flex justify-end">
+                <button class="retry-btn hidden text-xs font-medium text-indigo-500 hover:text-indigo-700 flex items-center gap-1.5 transition-colors">
+                    <i class="fa-solid fa-rotate-left"></i> Intentar de nuevo
+                </button>
+            </div>
+        </article>
+
+        <!-- ────────────────────────
+             Q6 — TRIG
+        ──────────────────────── -->
+        <article class="quiz-card bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden fade-up" data-cat="trig" data-qid="6">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between p-6 pb-4 gap-3">
+                <div class="flex items-center space-x-3">
+                    <div class="bg-violet-600 text-white w-9 h-9 rounded-xl flex items-center justify-center font-bold text-sm shadow shadow-violet-200 flex-shrink-0">06</div>
+                    <div>
+                        <h2 class="font-bold text-slate-900 text-base">Pendiente en un Punto — \(\tan\)</h2>
+                        <p class="text-slate-500 text-xs mt-0.5">Evaluar la derivada implícita en un punto dado</p>
+                    </div>
+                </div>
+                <div class="flex gap-2">
+                    <span class="badge-intermedio self-start sm:self-auto px-3 py-1 rounded-full text-xs font-semibold">Intermedio</span>
+                    <span class="bg-sky-50 text-sky-700 self-start sm:self-auto px-3 py-1 rounded-full text-xs font-semibold">Trig</span>
+                </div>
+            </div>
+
+            <div class="px-6 pb-2">
+                <p class="text-slate-700 text-sm mb-3 font-medium">Halla la pendiente de la tangente a la curva en el punto \((0, 0)\):</p>
+                <div class="math-block text-center">$$\sin(xy) = x$$</div>
+            </div>
+
+            <div class="px-6 pb-2 mt-4 space-y-2" data-correct="C">
+                <button class="option-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-sm text-slate-700" data-opt="A">
+                    <span class="w-7 h-7 rounded-lg bg-white border border-slate-200 flex items-center justify-center text-xs font-bold text-slate-500 flex-shrink-0">A</span>
+                    <span>La pendiente es \(0\)</span>
+                </button>
+                <button class="option-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-sm text-slate-700" data-opt="B">
+                    <span class="w-7 h-7 rounded-lg bg-white border border-slate-200 flex items-center justify-center text-xs font-bold text-slate-500 flex-shrink-0">B</span>
+                    <span>La pendiente es \(-1\)</span>
+                </button>
+                <button class="option-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-sm text-slate-700" data-opt="C">
+                    <span class="w-7 h-7 rounded-lg bg-white border border-slate-200 flex items-center justify-center text-xs font-bold text-slate-500 flex-shrink-0">C</span>
+                    <span>La pendiente no está definida (tangente vertical)</span>
+                </button>
+                <button class="option-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-sm text-slate-700" data-opt="D">
+                    <span class="w-7 h-7 rounded-lg bg-white border border-slate-200 flex items-center justify-center text-xs font-bold text-slate-500 flex-shrink-0">D</span>
+                    <span>La pendiente es \(1\)</span>
+                </button>
+            </div>
+
+            <div class="px-6 pb-2 mt-2">
+                <div class="feedback-msg hidden"></div>
+                <div class="solution-panel mt-3" id="sol-6">
+                    <div class="bg-slate-50 rounded-xl border border-slate-100 p-4 space-y-3">
+                        <p class="text-xs font-semibold text-indigo-600 uppercase tracking-wider flex items-center gap-2"><i class="fa-solid fa-list-check"></i> Procedimiento Completo</p>
+                        <div class="space-y-3">
+                            <div class="sol-step">
+                                <div class="sol-step-num">1</div>
+                                <div class="text-sm text-slate-600 space-y-1">
+                                    <p>Derivamos \(\sin(xy)\) aplicando cadena y producto en el argumento \(xy\):</p>
+                                    <div class="math-block">$$\cos(xy)\!\left(y + x\frac{dy}{dx}\right) = 1$$</div>
+                                </div>
+                            </div>
+                            <div class="sol-step">
+                                <div class="sol-step-num">2</div>
+                                <div class="text-sm text-slate-600 space-y-1">
+                                    <p>Despejamos \(\dfrac{dy}{dx}\):</p>
+                                    <div class="math-block">$$\frac{dy}{dx} = \frac{1/\cos(xy) - y}{x} = \frac{\sec(xy) - y}{x}$$</div>
+                                </div>
+                            </div>
+                            <div class="sol-step">
+                                <div class="sol-step-num">3</div>
+                                <div class="text-sm text-slate-600">
+                                    <p>Evaluamos en \((0,0)\): el denominador es \(x=0\), por lo tanto la expresión no está definida → <strong>tangente vertical</strong>.</p>
+                                    <div class="result-box mt-2">$$\boxed{\text{Pendiente no definida (tangente vertical en }(0,0)\text{)}}$$</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="px-6 pb-5 pt-2 flex justify-end">
+                <button class="retry-btn hidden text-xs font-medium text-indigo-500 hover:text-indigo-700 flex items-center gap-1.5 transition-colors">
+                    <i class="fa-solid fa-rotate-left"></i> Intentar de nuevo
+                </button>
+            </div>
+        </article>
+
+        <!-- ══════════════════════════
+             SECCIÓN: AVANZADO
+        ══════════════════════════ -->
+        <div class="fade-up">
+            <div class="flex items-center gap-3 mb-5 mt-4">
+                <div class="h-px flex-1 bg-slate-100"></div>
+                <span class="flex items-center gap-2 px-3 py-1 rounded-full bg-fuchsia-50 text-fuchsia-700 text-xs font-semibold uppercase tracking-wider">
+                    <i class="fa-solid fa-bolt"></i> Nivel Avanzado
+                </span>
+                <div class="h-px flex-1 bg-slate-100"></div>
+            </div>
+        </div>
+
+        <!-- ────────────────────────
+             Q7
+        ──────────────────────── -->
+        <article class="quiz-card bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden fade-up" data-cat="avanzado" data-qid="7">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between p-6 pb-4 gap-3">
+                <div class="flex items-center space-x-3">
+                    <div class="bg-fuchsia-600 text-white w-9 h-9 rounded-xl flex items-center justify-center font-bold text-sm shadow shadow-fuchsia-200 flex-shrink-0">07</div>
+                    <div>
+                        <h2 class="font-bold text-slate-900 text-base">Función Exponencial Implícita</h2>
+                        <p class="text-slate-500 text-xs mt-0.5">Cadena en \(e^{xy}\)</p>
+                    </div>
+                </div>
+                <span class="badge-avanzado self-start sm:self-auto px-3 py-1 rounded-full text-xs font-semibold">Avanzado</span>
+            </div>
+
+            <div class="px-6 pb-2">
+                <p class="text-slate-700 text-sm mb-3 font-medium">¿Cuál es \(\dfrac{dy}{dx}\) para la curva implícita?</p>
+                <div class="math-block text-center">$$e^{xy} = x + y$$</div>
+            </div>
+
+            <div class="px-6 pb-2 mt-4 space-y-2" data-correct="A">
+                <button class="option-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-sm text-slate-700" data-opt="A">
+                    <span class="w-7 h-7 rounded-lg bg-white border border-slate-200 flex items-center justify-center text-xs font-bold text-slate-500 flex-shrink-0">A</span>
+                    <span>\(\dfrac{dy}{dx} = \dfrac{1 - ye^{xy}}{xe^{xy} - 1}\)</span>
+                </button>
+                <button class="option-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-sm text-slate-700" data-opt="B">
+                    <span class="w-7 h-7 rounded-lg bg-white border border-slate-200 flex items-center justify-center text-xs font-bold text-slate-500 flex-shrink-0">B</span>
+                    <span>\(\dfrac{dy}{dx} = \dfrac{ye^{xy} - 1}{1 - xe^{xy}}\)</span>
+                </button>
+                <button class="option-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-sm text-slate-700" data-opt="C">
+                    <span class="w-7 h-7 rounded-lg bg-white border border-slate-200 flex items-center justify-center text-xs font-bold text-slate-500 flex-shrink-0">C</span>
+                    <span>\(\dfrac{dy}{dx} = e^{xy}(y + x)\)</span>
+                </button>
+                <button class="option-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-sm text-slate-700" data-opt="D">
+                    <span class="w-7 h-7 rounded-lg bg-white border border-slate-200 flex items-center justify-center text-xs font-bold text-slate-500 flex-shrink-0">D</span>
+                    <span>\(\dfrac{dy}{dx} = 1\)</span>
+                </button>
+            </div>
+
+            <div class="px-6 pb-2 mt-2">
+                <div class="feedback-msg hidden"></div>
+                <div class="solution-panel mt-3" id="sol-7">
+                    <div class="bg-slate-50 rounded-xl border border-slate-100 p-4 space-y-3">
+                        <p class="text-xs font-semibold text-indigo-600 uppercase tracking-wider flex items-center gap-2"><i class="fa-solid fa-list-check"></i> Procedimiento Completo</p>
+                        <div class="space-y-3">
+                            <div class="sol-step">
+                                <div class="sol-step-num">1</div>
+                                <div class="text-sm text-slate-600 space-y-1">
+                                    <p>Derivamos \(e^{xy}\) con cadena y producto en el exponente \(xy\):</p>
+                                    <div class="math-block">$$e^{xy}\!\left(y + x\frac{dy}{dx}\right) = 1 + \frac{dy}{dx}$$</div>
+                                </div>
+                            </div>
+                            <div class="sol-step">
+                                <div class="sol-step-num">2</div>
+                                <div class="text-sm text-slate-600 space-y-1">
+                                    <p>Expandimos y agrupamos los términos con \(\dfrac{dy}{dx}\):</p>
+                                    <div class="math-block">$$ye^{xy} + xe^{xy}\frac{dy}{dx} = 1 + \frac{dy}{dx}$$</div>
+                                    <div class="math-block">$$xe^{xy}\frac{dy}{dx} - \frac{dy}{dx} = 1 - ye^{xy}$$</div>
+                                </div>
+                            </div>
+                            <div class="sol-step">
+                                <div class="sol-step-num">3</div>
+                                <div class="text-sm text-slate-600">
+                                    <p>Factorizamos y despejamos:</p>
+                                    <div class="result-box mt-1">$$\boxed{\frac{dy}{dx} = \frac{1 - ye^{xy}}{xe^{xy} - 1}}$$</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="px-6 pb-5 pt-2 flex justify-end">
+                <button class="retry-btn hidden text-xs font-medium text-indigo-500 hover:text-indigo-700 flex items-center gap-1.5 transition-colors">
+                    <i class="fa-solid fa-rotate-left"></i> Intentar de nuevo
+                </button>
+            </div>
+        </article>
+
+        <!-- ────────────────────────
+             Q8 — 2ª DERIVADA
+        ──────────────────────── -->
+        <article class="quiz-card bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden fade-up" data-cat="segunda" data-qid="8">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between p-6 pb-4 gap-3">
+                <div class="flex items-center space-x-3">
+                    <div class="bg-fuchsia-600 text-white w-9 h-9 rounded-xl flex items-center justify-center font-bold text-sm shadow shadow-fuchsia-200 flex-shrink-0">08</div>
+                    <div>
+                        <h2 class="font-bold text-slate-900 text-base">Segunda Derivada — Elipse</h2>
+                        <p class="text-slate-500 text-xs mt-0.5">Calcular \(\dfrac{d^2y}{dx^2}\) e interpretar la concavidad</p>
+                    </div>
+                </div>
+                <div class="flex gap-2">
+                    <span class="badge-avanzado self-start sm:self-auto px-3 py-1 rounded-full text-xs font-semibold">Avanzado</span>
+                    <span class="bg-cyan-50 text-cyan-700 self-start sm:self-auto px-3 py-1 rounded-full text-xs font-semibold">2ª Derivada</span>
+                </div>
+            </div>
+
+            <div class="px-6 pb-2">
+                <p class="text-slate-700 text-sm mb-3 font-medium">Para la elipse \(4x^2 + 9y^2 = 36\), la primera derivada es \(\dfrac{dy}{dx} = -\dfrac{4x}{9y}\). ¿Cuál es \(\dfrac{d^2y}{dx^2}\)?</p>
+                <div class="math-block text-center">$$4x^2 + 9y^2 = 36$$</div>
+            </div>
+
+            <div class="px-6 pb-2 mt-4 space-y-2" data-correct="C">
+                <button class="option-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-sm text-slate-700" data-opt="A">
+                    <span class="w-7 h-7 rounded-lg bg-white border border-slate-200 flex items-center justify-center text-xs font-bold text-slate-500 flex-shrink-0">A</span>
+                    <span>\(\dfrac{d^2y}{dx^2} = -\dfrac{4}{9y}\)</span>
+                </button>
+                <button class="option-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-sm text-slate-700" data-opt="B">
+                    <span class="w-7 h-7 rounded-lg bg-white border border-slate-200 flex items-center justify-center text-xs font-bold text-slate-500 flex-shrink-0">B</span>
+                    <span>\(\dfrac{d^2y}{dx^2} = \dfrac{16x^2 + 36}{9y^3}\)</span>
+                </button>
+                <button class="option-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-sm text-slate-700" data-opt="C">
+                    <span class="w-7 h-7 rounded-lg bg-white border border-slate-200 flex items-center justify-center text-xs font-bold text-slate-500 flex-shrink-0">C</span>
+                    <span>\(\dfrac{d^2y}{dx^2} = -\dfrac{16}{9y^3}\)</span>
+                </button>
+                <button class="option-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-sm text-slate-700" data-opt="D">
+                    <span class="w-7 h-7 rounded-lg bg-white border border-slate-200 flex items-center justify-center text-xs font-bold text-slate-500 flex-shrink-0">D</span>
+                    <span>\(\dfrac{d^2y}{dx^2} = \dfrac{4}{9}\)</span>
+                </button>
+            </div>
+
+            <div class="px-6 pb-2 mt-2">
+                <div class="feedback-msg hidden"></div>
+                <div class="solution-panel mt-3" id="sol-8">
+                    <div class="bg-slate-50 rounded-xl border border-slate-100 p-4 space-y-3">
+                        <p class="text-xs font-semibold text-indigo-600 uppercase tracking-wider flex items-center gap-2"><i class="fa-solid fa-list-check"></i> Procedimiento Completo</p>
+                        <div class="space-y-3">
+                            <div class="sol-step">
+                                <div class="sol-step-num">1</div>
+                                <div class="text-sm text-slate-600 space-y-1">
+                                    <p>Aplicamos la Regla del Cociente a \(\dfrac{dy}{dx} = -\dfrac{4x}{9y}\):</p>
+                                    <div class="math-block">$$\frac{d^2y}{dx^2} = -\frac{4}{9}\cdot\frac{(1)\cdot y - x\cdot\dfrac{dy}{dx}}{y^2}$$</div>
+                                </div>
+                            </div>
+                            <div class="sol-step">
+                                <div class="sol-step-num">2</div>
+                                <div class="text-sm text-slate-600 space-y-1">
+                                    <p>Sustituimos \(\dfrac{dy}{dx} = -\dfrac{4x}{9y}\):</p>
+                                    <div class="math-block">$$= -\frac{4}{9}\cdot\frac{y - x\!\left(-\dfrac{4x}{9y}\right)}{y^2} = -\frac{4}{9}\cdot\frac{y + \dfrac{4x^2}{9y}}{y^2}$$</div>
+                                </div>
+                            </div>
+                            <div class="sol-step">
+                                <div class="sol-step-num">3</div>
+                                <div class="text-sm text-slate-600 space-y-1">
+                                    <p>Multiplicamos por \(y\) arriba y abajo:</p>
+                                    <div class="math-block">$$= -\frac{4}{9}\cdot\frac{9y^2 + 4x^2}{9y^3}$$</div>
+                                    <p>Usamos \(4x^2 + 9y^2 = 36\):</p>
+                                    <div class="result-box mt-1">$$\boxed{\frac{d^2y}{dx^2} = -\frac{4}{9}\cdot\frac{36}{9y^3} = -\frac{16}{9y^3}}$$</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="px-6 pb-5 pt-2 flex justify-end">
+                <button class="retry-btn hidden text-xs font-medium text-indigo-500 hover:text-indigo-700 flex items-center gap-1.5 transition-colors">
+                    <i class="fa-solid fa-rotate-left"></i> Intentar de nuevo
+                </button>
+            </div>
+        </article>
+
+        <!-- ────────────────────────
+             Q9
+        ──────────────────────── -->
+        <article class="quiz-card bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden fade-up" data-cat="avanzado" data-qid="9">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between p-6 pb-4 gap-3">
+                <div class="flex items-center space-x-3">
+                    <div class="bg-fuchsia-600 text-white w-9 h-9 rounded-xl flex items-center justify-center font-bold text-sm shadow shadow-fuchsia-200 flex-shrink-0">09</div>
+                    <div>
+                        <h2 class="font-bold text-slate-900 text-base">Logaritmo Natural Implícito</h2>
+                        <p class="text-slate-500 text-xs mt-0.5">Cadena aplicada a \(\ln(y)\)</p>
+                    </div>
+                </div>
+                <span class="badge-avanzado self-start sm:self-auto px-3 py-1 rounded-full text-xs font-semibold">Avanzado</span>
+            </div>
+
+            <div class="px-6 pb-2">
+                <p class="text-slate-700 text-sm mb-3 font-medium">¿Cuál es \(\dfrac{dy}{dx}\) para la ecuación?</p>
+                <div class="math-block text-center">$$\ln(y) = x^2 + 3x$$</div>
+            </div>
+
+            <div class="px-6 pb-2 mt-4 space-y-2" data-correct="B">
+                <button class="option-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-sm text-slate-700" data-opt="A">
+                    <span class="w-7 h-7 rounded-lg bg-white border border-slate-200 flex items-center justify-center text-xs font-bold text-slate-500 flex-shrink-0">A</span>
+                    <span>\(\dfrac{dy}{dx} = \dfrac{1}{2x+3}\)</span>
+                </button>
+                <button class="option-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-sm text-slate-700" data-opt="B">
+                    <span class="w-7 h-7 rounded-lg bg-white border border-slate-200 flex items-center justify-center text-xs font-bold text-slate-500 flex-shrink-0">B</span>
+                    <span>\(\dfrac{dy}{dx} = y(2x+3)\)</span>
+                </button>
+                <button class="option-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-sm text-slate-700" data-opt="C">
+                    <span class="w-7 h-7 rounded-lg bg-white border border-slate-200 flex items-center justify-center text-xs font-bold text-slate-500 flex-shrink-0">C</span>
+                    <span>\(\dfrac{dy}{dx} = 2x+3\)</span>
+                </button>
+                <button class="option-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-sm text-slate-700" data-opt="D">
+                    <span class="w-7 h-7 rounded-lg bg-white border border-slate-200 flex items-center justify-center text-xs font-bold text-slate-500 flex-shrink-0">D</span>
+                    <span>\(\dfrac{dy}{dx} = \ln(2x+3)\)</span>
+                </button>
+            </div>
+
+            <div class="px-6 pb-2 mt-2">
+                <div class="feedback-msg hidden"></div>
+                <div class="solution-panel mt-3" id="sol-9">
+                    <div class="bg-slate-50 rounded-xl border border-slate-100 p-4 space-y-3">
+                        <p class="text-xs font-semibold text-indigo-600 uppercase tracking-wider flex items-center gap-2"><i class="fa-solid fa-list-check"></i> Procedimiento Completo</p>
+                        <div class="space-y-3">
+                            <div class="sol-step">
+                                <div class="sol-step-num">1</div>
+                                <div class="text-sm text-slate-600 space-y-1">
+                                    <p>Derivamos \(\ln(y)\) con la regla de la cadena: \(\dfrac{d}{dx}\ln(y) = \dfrac{1}{y}\dfrac{dy}{dx}\):</p>
+                                    <div class="math-block">$$\frac{1}{y}\,\frac{dy}{dx} = 2x + 3$$</div>
+                                </div>
+                            </div>
+                            <div class="sol-step">
+                                <div class="sol-step-num">2</div>
+                                <div class="text-sm text-slate-600">
+                                    <p>Multiplicamos ambos lados por \(y\):</p>
+                                    <div class="result-box mt-1">$$\boxed{\frac{dy}{dx} = y(2x+3)}$$</div>
+                                    <p class="mt-2 text-xs text-slate-500">Si quisiéramos eliminar \(y\), podríamos sustituir \(y = e^{x^2+3x}\), pero en derivación implícita es válido dejar \(y\) en el resultado.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="px-6 pb-5 pt-2 flex justify-end">
+                <button class="retry-btn hidden text-xs font-medium text-indigo-500 hover:text-indigo-700 flex items-center gap-1.5 transition-colors">
+                    <i class="fa-solid fa-rotate-left"></i> Intentar de nuevo
+                </button>
+            </div>
+        </article>
+
+        <!-- ────────────────────────
+             Q10 — 2ª DERIVADA
+        ──────────────────────── -->
+        <article class="quiz-card bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden fade-up" data-cat="segunda" data-qid="10">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between p-6 pb-4 gap-3">
+                <div class="flex items-center space-x-3">
+                    <div class="bg-fuchsia-600 text-white w-9 h-9 rounded-xl flex items-center justify-center font-bold text-sm shadow shadow-fuchsia-200 flex-shrink-0">10</div>
+                    <div>
+                        <h2 class="font-bold text-slate-900 text-base">Concavidad — Hipérbola</h2>
+                        <p class="text-slate-500 text-xs mt-0.5">Segunda derivada implícita con sustitución</p>
+                    </div>
+                </div>
+                <div class="flex gap-2">
+                    <span class="badge-avanzado self-start sm:self-auto px-3 py-1 rounded-full text-xs font-semibold">Avanzado</span>
+                    <span class="bg-cyan-50 text-cyan-700 self-start sm:self-auto px-3 py-1 rounded-full text-xs font-semibold">2ª Derivada</span>
+                </div>
+            </div>
+
+            <div class="px-6 pb-2">
+                <p class="text-slate-700 text-sm mb-3 font-medium">Para la hipérbola \(x^2 - y^2 = 1\), sabemos que \(\dfrac{dy}{dx} = \dfrac{x}{y}\). ¿Cuál es \(\dfrac{d^2y}{dx^2}\)?</p>
+                <div class="math-block text-center">$$x^2 - y^2 = 1$$</div>
+            </div>
+
+            <div class="px-6 pb-2 mt-4 space-y-2" data-correct="D">
+                <button class="option-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-sm text-slate-700" data-opt="A">
+                    <span class="w-7 h-7 rounded-lg bg-white border border-slate-200 flex items-center justify-center text-xs font-bold text-slate-500 flex-shrink-0">A</span>
+                    <span>\(\dfrac{d^2y}{dx^2} = \dfrac{1}{y}\)</span>
+                </button>
+                <button class="option-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-sm text-slate-700" data-opt="B">
+                    <span class="w-7 h-7 rounded-lg bg-white border border-slate-200 flex items-center justify-center text-xs font-bold text-slate-500 flex-shrink-0">B</span>
+                    <span>\(\dfrac{d^2y}{dx^2} = -\dfrac{1}{y^3}\)</span>
+                </button>
+                <button class="option-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-sm text-slate-700" data-opt="C">
+                    <span class="w-7 h-7 rounded-lg bg-white border border-slate-200 flex items-center justify-center text-xs font-bold text-slate-500 flex-shrink-0">C</span>
+                    <span>\(\dfrac{d^2y}{dx^2} = \dfrac{x^2+y^2}{y^3}\)</span>
+                </button>
+                <button class="option-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-sm text-slate-700" data-opt="D">
+                    <span class="w-7 h-7 rounded-lg bg-white border border-slate-200 flex items-center justify-center text-xs font-bold text-slate-500 flex-shrink-0">D</span>
+                    <span>\(\dfrac{d^2y}{dx^2} = -\dfrac{1}{y^3}\) usando \(x^2 - y^2 = 1\)</span>
+                </button>
+            </div>
+
+            <div class="px-6 pb-2 mt-2">
+                <div class="feedback-msg hidden"></div>
+                <div class="solution-panel mt-3" id="sol-10">
+                    <div class="bg-slate-50 rounded-xl border border-slate-100 p-4 space-y-3">
+                        <p class="text-xs font-semibold text-indigo-600 uppercase tracking-wider flex items-center gap-2"><i class="fa-solid fa-list-check"></i> Procedimiento Completo</p>
+                        <div class="space-y-3">
+                            <div class="sol-step">
+                                <div class="sol-step-num">1</div>
+                                <div class="text-sm text-slate-600 space-y-1">
+                                    <p>Derivamos \(\dfrac{x}{y}\) con la Regla del Cociente:</p>
+                                    <div class="math-block">$$\frac{d^2y}{dx^2} = \frac{y - x\cdot\dfrac{dy}{dx}}{y^2}$$</div>
+                                </div>
+                            </div>
+                            <div class="sol-step">
+                                <div class="sol-step-num">2</div>
+                                <div class="text-sm text-slate-600 space-y-1">
+                                    <p>Sustituimos \(\dfrac{dy}{dx} = \dfrac{x}{y}\):</p>
+                                    <div class="math-block">$$= \frac{y - x\!\cdot\!\dfrac{x}{y}}{y^2} = \frac{y - \dfrac{x^2}{y}}{y^2} = \frac{y^2 - x^2}{y^3}$$</div>
+                                </div>
+                            </div>
+                            <div class="sol-step">
+                                <div class="sol-step-num">3</div>
+                                <div class="text-sm text-slate-600">
+                                    <p>Como \(x^2 - y^2 = 1\), entonces \(y^2 - x^2 = -1\):</p>
+                                    <div class="result-box mt-1">$$\boxed{\frac{d^2y}{dx^2} = -\frac{1}{y^3}}$$</div>
+                                    <p class="mt-2 text-xs text-slate-500">La hipérbola es cóncava hacia abajo para \(y &gt; 0\) y cóncava hacia arriba para \(y &lt; 0\).</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="px-6 pb-5 pt-2 flex justify-end">
+                <button class="retry-btn hidden text-xs font-medium text-indigo-500 hover:text-indigo-700 flex items-center gap-1.5 transition-colors">
+                    <i class="fa-solid fa-rotate-left"></i> Intentar de nuevo
+                </button>
+            </div>
+        </article>
+
+        <!-- ────────────────────────
+             Q11
+        ──────────────────────── -->
+        <article class="quiz-card bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden fade-up" data-cat="avanzado" data-qid="11">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between p-6 pb-4 gap-3">
+                <div class="flex items-center space-x-3">
+                    <div class="bg-fuchsia-600 text-white w-9 h-9 rounded-xl flex items-center justify-center font-bold text-sm shadow shadow-fuchsia-200 flex-shrink-0">11</div>
+                    <div>
+                        <h2 class="font-bold text-slate-900 text-base">Hoja de Descartes — Recta Tangente</h2>
+                        <p class="text-slate-500 text-xs mt-0.5">Ecuación de tangente en un punto específico</p>
+                    </div>
+                </div>
+                <span class="badge-avanzado self-start sm:self-auto px-3 py-1 rounded-full text-xs font-semibold">Avanzado</span>
+            </div>
+
+            <div class="px-6 pb-2">
+                <p class="text-slate-700 text-sm mb-3 font-medium">Para la <em>Hoja de Descartes</em>, ¿cuál es la ecuación de la tangente en el punto \((3, 3)\)?</p>
+                <div class="math-block text-center">$$x^3 + y^3 = 6xy$$</div>
+            </div>
+
+            <div class="px-6 pb-2 mt-4 space-y-2" data-correct="A">
+                <button class="option-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-sm text-slate-700" data-opt="A">
+                    <span class="w-7 h-7 rounded-lg bg-white border border-slate-200 flex items-center justify-center text-xs font-bold text-slate-500 flex-shrink-0">A</span>
+                    <span>\(y = -x + 6\)</span>
+                </button>
+                <button class="option-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-sm text-slate-700" data-opt="B">
+                    <span class="w-7 h-7 rounded-lg bg-white border border-slate-200 flex items-center justify-center text-xs font-bold text-slate-500 flex-shrink-0">B</span>
+                    <span>\(y = x\)</span>
+                </button>
+                <button class="option-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-sm text-slate-700" data-opt="C">
+                    <span class="w-7 h-7 rounded-lg bg-white border border-slate-200 flex items-center justify-center text-xs font-bold text-slate-500 flex-shrink-0">C</span>
+                    <span>\(y = -\dfrac{1}{2}x + \dfrac{9}{2}\)</span>
+                </button>
+                <button class="option-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-sm text-slate-700" data-opt="D">
+                    <span class="w-7 h-7 rounded-lg bg-white border border-slate-200 flex items-center justify-center text-xs font-bold text-slate-500 flex-shrink-0">D</span>
+                    <span>\(y = 3\)</span>
+                </button>
+            </div>
+
+            <div class="px-6 pb-2 mt-2">
+                <div class="feedback-msg hidden"></div>
+                <div class="solution-panel mt-3" id="sol-11">
+                    <div class="bg-slate-50 rounded-xl border border-slate-100 p-4 space-y-3">
+                        <p class="text-xs font-semibold text-indigo-600 uppercase tracking-wider flex items-center gap-2"><i class="fa-solid fa-list-check"></i> Procedimiento Completo</p>
+                        <div class="space-y-3">
+                            <div class="sol-step">
+                                <div class="sol-step-num">1</div>
+                                <div class="text-sm text-slate-600 space-y-1">
+                                    <p>Del Ejemplo 02 sabemos que:</p>
+                                    <div class="math-block">$$\frac{dy}{dx} = \frac{2y - x^2}{y^2 - 2x}$$</div>
+                                </div>
+                            </div>
+                            <div class="sol-step">
+                                <div class="sol-step-num">2</div>
+                                <div class="text-sm text-slate-600 space-y-1">
+                                    <p>Evaluamos en \((3, 3)\):</p>
+                                    <div class="math-block">$$\frac{dy}{dx}\bigg|_{(3,3)} = \frac{2(3) - 9}{9 - 6} = \frac{6-9}{3} = \frac{-3}{3} = -1$$</div>
+                                </div>
+                            </div>
+                            <div class="sol-step">
+                                <div class="sol-step-num">3</div>
+                                <div class="text-sm text-slate-600">
+                                    <p>Ecuación punto-pendiente con \(m = -1\) y \((3,3)\):</p>
+                                    <div class="math-block">$$y - 3 = -1(x - 3) \implies y = -x + 6$$</div>
+                                    <div class="result-box mt-1">$$\boxed{y = -x + 6}$$</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="px-6 pb-5 pt-2 flex justify-end">
+                <button class="retry-btn hidden text-xs font-medium text-indigo-500 hover:text-indigo-700 flex items-center gap-1.5 transition-colors">
+                    <i class="fa-solid fa-rotate-left"></i> Intentar de nuevo
+                </button>
+            </div>
+        </article>
+
+        <!-- ────────────────────────
+             Q12 — CONCEPTUAL
+        ──────────────────────── -->
+        <article class="quiz-card bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden fade-up" data-cat="avanzado" data-qid="12">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between p-6 pb-4 gap-3">
+                <div class="flex items-center space-x-3">
+                    <div class="bg-fuchsia-600 text-white w-9 h-9 rounded-xl flex items-center justify-center font-bold text-sm shadow shadow-fuchsia-200 flex-shrink-0">12</div>
+                    <div>
+                        <h2 class="font-bold text-slate-900 text-base">Pregunta Conceptual — Tangentes Verticales</h2>
+                        <p class="text-slate-500 text-xs mt-0.5">Interpretación geométrica de la derivada</p>
+                    </div>
+                </div>
+                <span class="badge-avanzado self-start sm:self-auto px-3 py-1 rounded-full text-xs font-semibold">Avanzado</span>
+            </div>
+
+            <div class="px-6 pb-2">
+                <p class="text-slate-700 text-sm mb-3 font-medium leading-relaxed">En una curva implícita \(F(x,y) = 0\), ¿cuándo existe una tangente <strong>vertical</strong>?</p>
+            </div>
+
+            <div class="px-6 pb-2 mt-2 space-y-2" data-correct="C">
+                <button class="option-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-sm text-slate-700" data-opt="A">
+                    <span class="w-7 h-7 rounded-lg bg-white border border-slate-200 flex items-center justify-center text-xs font-bold text-slate-500 flex-shrink-0">A</span>
+                    <span>Cuando el numerador de \(\dfrac{dy}{dx}\) es igual a cero</span>
+                </button>
+                <button class="option-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-sm text-slate-700" data-opt="B">
+                    <span class="w-7 h-7 rounded-lg bg-white border border-slate-200 flex items-center justify-center text-xs font-bold text-slate-500 flex-shrink-0">B</span>
+                    <span>Cuando \(\dfrac{dy}{dx} = 0\) (tangente horizontal)</span>
+                </button>
+                <button class="option-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-sm text-slate-700" data-opt="C">
+                    <span class="w-7 h-7 rounded-lg bg-white border border-slate-200 flex items-center justify-center text-xs font-bold text-slate-500 flex-shrink-0">C</span>
+                    <span>Cuando el denominador de \(\dfrac{dy}{dx}\) es igual a cero (y el numerador no)</span>
+                </button>
+                <button class="option-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-sm text-slate-700" data-opt="D">
+                    <span class="w-7 h-7 rounded-lg bg-white border border-slate-200 flex items-center justify-center text-xs font-bold text-slate-500 flex-shrink-0">D</span>
+                    <span>Cuando tanto el numerador como el denominador son cero</span>
+                </button>
+            </div>
+
+            <div class="px-6 pb-2 mt-2">
+                <div class="feedback-msg hidden"></div>
+                <div class="solution-panel mt-3" id="sol-12">
+                    <div class="bg-slate-50 rounded-xl border border-slate-100 p-4 space-y-3">
+                        <p class="text-xs font-semibold text-indigo-600 uppercase tracking-wider flex items-center gap-2"><i class="fa-solid fa-list-check"></i> Explicación</p>
+                        <div class="space-y-3">
+                            <div class="sol-step">
+                                <div class="sol-step-num">1</div>
+                                <div class="text-sm text-slate-600">
+                                    <p>La derivada \(\dfrac{dy}{dx}\) es una fracción. La pendiente de la tangente tiende a infinito cuando el <strong>denominador → 0</strong> y el numerador permanece distinto de cero.</p>
+                                </div>
+                            </div>
+                            <div class="sol-step">
+                                <div class="sol-step-num">2</div>
+                                <div class="text-sm text-slate-600">
+                                    <p>Por contraste, una <strong>tangente horizontal</strong> ocurre cuando el numerador = 0 (y el denominador ≠ 0), pues entonces la pendiente es 0.</p>
+                                </div>
+                            </div>
+                            <div class="sol-step">
+                                <div class="sol-step-num">3</div>
+                                <div class="text-sm text-slate-600">
+                                    <p>Si <strong>ambos</strong> son cero simultáneamente, el punto se llama <em>punto singular</em> o cúspide, y la tangente no está definida de forma estándar.</p>
+                                    <div class="result-box mt-2">
+                                        <p class="font-semibold text-slate-700 text-xs">Resumen:</p>
+                                        <p class="text-xs text-slate-600 mt-1">Tangente vertical ↔ denominador de dy/dx = 0 (y numerador ≠ 0)</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="px-6 pb-5 pt-2 flex justify-end">
+                <button class="retry-btn hidden text-xs font-medium text-indigo-500 hover:text-indigo-700 flex items-center gap-1.5 transition-colors">
+                    <i class="fa-solid fa-rotate-left"></i> Intentar de nuevo
+                </button>
+            </div>
+        </article>
+
+        <!-- ── Results summary ── -->
+        <div class="fade-up bg-gradient-to-r from-indigo-600 to-violet-600 rounded-2xl p-8 text-white text-center shadow-xl shadow-indigo-200" id="results-cta">
+            <i class="fa-solid fa-trophy text-3xl mb-3 opacity-80"></i>
+            <h3 class="text-xl font-bold mb-2">¡Excelente trabajo!</h3>
+            <p class="text-indigo-100 mb-1 text-sm max-w-md mx-auto">Puntuación actual: <strong id="cta-score">0</strong> / 12</p>
+            <p class="text-indigo-200 mb-5 text-xs max-w-md mx-auto">Responde todas las preguntas para ver tu resultado final. Si tienes dudas, vuelve a revisar los Ejemplos Guiados.</p>
+            <a href="ejemplos.html" class="inline-block bg-white text-indigo-700 font-semibold px-7 py-3 rounded-xl hover:bg-indigo-50 transition-colors shadow-md mr-3">
+                ← Ver Ejemplos
+            </a>
+            <a href="videos.html" class="inline-block bg-indigo-500/40 text-white font-semibold px-7 py-3 rounded-xl hover:bg-indigo-500/60 transition-colors">
+                Ver Videos →
+            </a>
+        </div>
+
+    </main>
+
+    <footer class="bg-white border-t border-slate-100 py-8 mt-12">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-slate-500">
+            <div>
+                <p>&copy; 2026 <span class="font-medium text-slate-700">ImplicitAcademia</span>. Todos los derechos reservados.</p>
+            </div>
+            <div class="flex items-center space-x-2 bg-slate-50 px-4 py-2 rounded-xl border border-slate-100">
+                <span class="text-xs text-slate-400">Diseñado y Desarrollado por:</span>
+                <span class="font-semibold text-slate-700 tracking-tight">José Daniel Real García | 9941-25-837</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="funciones_practica.js" defer></script>
+</body>
+</html>

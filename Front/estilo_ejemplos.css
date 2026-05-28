@@ -1,0 +1,106 @@
+body { font-family: 'Inter', sans-serif; }
+
+/* ── Accordion steps ── */
+    .step-content {
+         max-height: 0;
+         overflow: hidden;
+         transition: max-height 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+            opacity 0.35s ease;
+        opacity: 0;
+        }
+
+    .step-content.open {
+        max-height: 1200px;
+        opacity: 1;
+        }
+        
+        .step-chevron {
+            transition: transform 0.3s ease;
+        }
+        .step-btn.active .step-chevron {
+            transform: rotate(180deg);
+        }
+        .step-btn.active {
+            background-color: #eef2ff;
+            color: #4338ca;
+        }
+
+        /* ── Example card hover ── */
+        .example-card {
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+        .example-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 40px -8px rgba(99, 102, 241, 0.18);
+        }
+
+        /* ── Difficulty badge ── */
+        .badge-basico   { background:#eff6ff; color:#1d4ed8; }
+        .badge-intermedio { background:#f5f3ff; color:#6d28d9; }
+        .badge-avanzado { background:#fdf4ff; color:#a21caf; }
+
+        /* ── Progress bar ── */
+        .progress-fill {
+            height: 100%;
+            border-radius: 9999px;
+            background: linear-gradient(90deg, #6366f1, #8b5cf6);
+            transition: width 0.6s ease;
+        }
+
+        /* ── Sticky category nav ── */
+        .cat-btn {
+            transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+        }
+        .cat-btn.active {
+            background: #4f46e5;
+            color: white;
+            box-shadow: 0 4px 14px -2px rgba(79,70,229,0.35);
+        }
+
+        /* ── Math block ── */
+        .math-block {
+            background: #0f172a;
+            color: #e2e8f0;
+            border-radius: 0.75rem;
+            padding: 1rem 1.25rem;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+        }
+        .math-block .katex { color: #a5f3fc; font-size: 1.05rem; }
+
+        /* ── Step number circle ── */
+        .step-num {
+            min-width: 2rem;
+            height: 2rem;
+            border-radius: 9999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.8rem;
+            background: #e0e7ff;
+            color: #4338ca;
+        }
+        .step-num.done {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        /* ── Fade-in animation on scroll ── */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        .fade-up.visible {
+            opacity: 1;
+            transform: none;
+        }
+
+        /* ── Result highlight ── */
+        .result-box {
+            background: linear-gradient(135deg, #eef2ff 0%, #f5f3ff 100%);
+            border-left: 4px solid #6366f1;
+            border-radius: 0.5rem;
+            padding: 0.875rem 1.25rem;
+        }

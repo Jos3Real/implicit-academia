@@ -1,0 +1,475 @@
+/* ==========================================================================
+   estilo_videos.css - Estilos personalizados para ImplicitAcademia
+   ========================================================================== */
+
+/* --- Variables y Configuración Base --- */
+:root {
+    --primary: #4f46e5; /* indigo-600 */
+    --primary-light: #818cf8; /* indigo-400 */
+    --secondary: #7c3aed; /* violet-600 */
+    --bg-card: #ffffff;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+::selection {
+    background-color: var(--primary-light);
+    color: white;
+}
+
+/* --- Animaciones Base --- */
+.fade-up {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.fade-up.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.text-gradient {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* --- Hero Blobs (Animación de fondo) --- */
+.hero-section {
+    background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
+}
+
+.hero-blob {
+    position: absolute;
+    filter: blur(60px);
+    opacity: 0.4;
+    border-radius: 50%;
+    z-index: 0;
+    animation: float 10s infinite ease-in-out alternate;
+}
+
+.hero-blob-1 {
+    top: -100px;
+    right: -50px;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, #e0e7ff 0%, rgba(224, 231, 255, 0) 70%);
+}
+
+.hero-blob-2 {
+    bottom: -150px;
+    left: -100px;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, #ede9fe 0%, rgba(237, 233, 254, 0) 70%);
+    animation-delay: -5s;
+}
+
+@keyframes float {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(-30px, 50px) scale(1.1); }
+}
+
+/* --- Stats & Ruta de Aprendizaje --- */
+.stat-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #475569;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    border: 1px solid #f1f5f9;
+}
+
+.path-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 1.5rem;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+    border: 1px solid #f1f5f9;
+    width: 100%;
+    max-width: 300px;
+}
+
+.path-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    position: relative;
+}
+
+.path-step:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    top: 2rem;
+    left: 0.875rem;
+    bottom: -0.5rem;
+    width: 2px;
+    background-color: #e2e8f0;
+}
+
+.path-step--done:not(:last-child)::after {
+    background-color: var(--primary-light);
+}
+
+.path-num {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.75rem;
+    height: 1.75rem;
+    border-radius: 50%;
+    background-color: #f1f5f9;
+    color: #94a3b8;
+    font-size: 0.75rem;
+    font-weight: 700;
+    z-index: 1;
+}
+
+.path-step--done .path-num {
+    background-color: var(--primary);
+    color: white;
+    box-shadow: 0 0 0 4px #e0e7ff;
+}
+
+.path-num--active {
+    background-color: var(--primary-light);
+    color: white;
+    box-shadow: 0 0 0 4px #e0e7ff;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(79, 70, 229, 0.4); }
+    70% { box-shadow: 0 0 0 6px rgba(79, 70, 229, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(79, 70, 229, 0); }
+}
+
+/* --- Filtros (Topic Tabs) --- */
+.topic-btn {
+    transition: all 0.2s ease;
+}
+
+.topic-btn:hover:not(.active) {
+    background-color: #f8fafc;
+    border-color: #cbd5e1;
+}
+
+.topic-btn.active {
+    background-color: var(--primary);
+    color: white;
+    border-color: var(--primary);
+    box-shadow: 0 4px 10px -2px rgba(79, 70, 229, 0.4);
+}
+
+/* Ocultar scrollbar en tabs */
+.overflow-x-auto::-webkit-scrollbar { display: none; }
+.overflow-x-auto { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* --- Tarjetas de Video --- */
+.video-card {
+    background-color: var(--bg-card);
+    border-radius: 1.5rem;
+    box-shadow: 0 4px 20px -5px rgba(0, 0, 0, 0.05);
+    border: 1px solid #f1f5f9;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.video-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px -5px rgba(0, 0, 0, 0.08);
+}
+
+.video-card__header {
+    padding: 1.5rem;
+    border-bottom: 1px solid #f8fafc;
+    background-color: #fafaf9;
+}
+
+.vid-num-badge {
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.75rem;
+    font-weight: 800;
+    font-size: 1.125rem;
+    color: white;
+}
+
+.vid-num-badge--intro { background: linear-gradient(135deg, #3b82f6, #2563eb); }
+.vid-num-badge--tecnica { background: linear-gradient(135deg, #8b5cf6, #7c3aed); }
+.vid-num-badge--ejemplos { background: linear-gradient(135deg, #ec4899, #db2777); }
+.vid-num-badge--aplicaciones { background: linear-gradient(135deg, #f59e0b, #d97706); }
+
+.level-badge {
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.level-badge--basico { background-color: #dcfce7; color: #166534; }
+.level-badge--intermedio { background-color: #fef9c3; color: #854d0e; }
+.level-badge--avanzado { background-color: #fee2e2; color: #991b1b; }
+
+.topic-tag {
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    background-color: #f1f5f9;
+    color: #475569;
+}
+
+/* --- Estructura Interna del Video (Grid responsive) --- */
+.video-card__body {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 1.5rem;
+}
+
+@media (min-width: 1024px) {
+    .video-card__body {
+        grid-template-columns: 1.8fr 1fr; /* El video toma más espacio que la info */
+    }
+}
+
+/* --- Contenedor del Iframe 16:9 --- */
+.video-wrapper {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; /* Ratio 16:9 */
+    background-color: #0f172a;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: inset 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.video-frame {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    z-index: 10;
+}
+
+/* Placeholder mientras no hay ID válido de YouTube */
+.video-placeholder {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #1e293b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 20;
+    cursor: pointer;
+    transition: opacity 0.3s;
+}
+
+.placeholder-inner {
+    text-align: center;
+    background: rgba(15, 23, 42, 0.8);
+    padding: 2rem;
+    border-radius: 1rem;
+    border: 1px dashed #334155;
+    backdrop-filter: blur(4px);
+}
+
+/* --- Información Lateral del Video --- */
+.video-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.info-section {
+    background-color: #f8fafc;
+    padding: 1.25rem;
+    border-radius: 1rem;
+    border: 1px solid #f1f5f9;
+}
+
+.info-label {
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: #334155;
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.info-label i {
+    color: var(--primary);
+}
+
+.info-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.info-list li {
+    font-size: 0.875rem;
+    color: #475569;
+    position: relative;
+    padding-left: 1.25rem;
+}
+
+.info-list li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: var(--primary-light);
+    font-weight: bold;
+}
+
+.tag-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.tag-cloud .tag {
+    background-color: white;
+    border: 1px solid #e2e8f0;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.5rem;
+    font-size: 0.75rem;
+    color: #64748b;
+}
+
+.formula-chip {
+    background-color: white;
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    border: 1px solid #e2e8f0;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+/* Botón de acción por video */
+.nav-cta-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+    padding: 0.875rem;
+    border-radius: 0.75rem;
+    font-weight: 600;
+    font-size: 0.875rem;
+    text-align: center;
+    transition: all 0.2s;
+    background-color: #f1f5f9;
+    color: #475569;
+}
+
+.nav-cta-btn:hover {
+    background-color: #e2e8f0;
+    color: #1e293b;
+}
+
+.nav-cta-btn--accent {
+    background-color: #e0e7ff;
+    color: var(--primary);
+}
+
+.nav-cta-btn--accent:hover {
+    background-color: var(--primary);
+    color: white;
+}
+
+/* --- Referencia Rápida (Grid) --- */
+.ref-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.ref-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 1.25rem;
+    border: 1px solid #f1f5f9;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s;
+}
+
+.ref-card:hover {
+    transform: translateY(-3px);
+}
+
+.ref-card__icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+}
+
+.ref-card__title {
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 0.5rem;
+}
+
+.ref-card__desc {
+    font-size: 0.875rem;
+    color: #64748b;
+    margin-bottom: 1rem;
+    line-height: 1.5;
+}
+
+.ref-formula {
+    background-color: #f8fafc;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #0f172a;
+}
+
+/* --- Tips Banner --- */
+.tips-banner {
+    background: linear-gradient(to right, #f8fafc, #ffffff);
+    border: 1px solid #e2e8f0;
+    border-left: 4px solid #f59e0b; /* Ambar */
+    padding: 1.5rem;
+    border-radius: 1rem;
+    display: flex;
+    gap: 1.5rem;
+}
+
+.tip-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    font-size: 0.875rem;
+    color: #475569;
+}
